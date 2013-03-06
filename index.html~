@@ -146,23 +146,18 @@ $.fn.hoverClass = function(c) {
 			<li>
 				<a href="perceptron.html">Simple Perceptron</a>
 				<ul style="opacity: 0.9999; display: block;">
-					<li><a href="#item2.1">item 2.1</a></li>
-					<li><a href="#item2.2">item 2.2</a></li>
+					
 				</ul>
 			</li>
 			<li>
 				<a href="multiperceptron.html">Multilayer Perceptron</a>
 				<ul style="opacity: 0.9999; display: block;">
-					<li><a href="#item3.1">item 3.1</a></li>
-					<li><a href="#item3.2">item 3.2</a></li>
+					
 				</ul>
 			</li>
 			<li>
 				<a href="backpropagation.html">Backpropagation</a>
 				<ul>
-					<li><a href="#item4.1">item 4.1</a></li>
-					<li><a href="#item4.2">item 4.2</a></li>
-					<li><a href="#item4.3">item 4.3</a></li>
 				</ul>
 			</li>
 		</ul>
