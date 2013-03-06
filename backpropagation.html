@@ -260,6 +260,7 @@ Where  is the weight between medial neuron  and output ,  is the error at  and  
 
 <h1>Limitations</h1>
 There are some problems associated with the back propagation algorithm. For instance, it might not find a solution - there is not guarantee that the network will reach its target. The network is also very sensitive to the number of medial layers. If there are too little, it might not be able to learn what you want it to, but if there are too many then it will learn very slowly. This means that a neural network has to be reconfigured for each function you want it to do, unless they are similar. This takes a lot of time, and requires some experience to get right without resorting to trial and error.
+Also, as mentioned before, the speed at which a neural network will learn depends on the learning rate, but the learning rate cannot be set to high without risking oscillations. This marks a fairly severe limitation on back propagation and greatly reduces its speed.
 
 		       			  
 		       </div>
