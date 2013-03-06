@@ -178,16 +178,16 @@ $.fn.hoverClass = function(c) {
 		       <!-- Begin Content Column -->
 		       <div id="content">
 <h1>Introduction</h1>
-In large neural networks simulating more complex functions, finding the weights of each synapse is too complex to be done manually, instead the back propagation algorithm is commonly used to find weights which will approximate the desired behaviour.
+In large neural networks simulating more complex functions, finding the weights of each synapse is too complex to be done manually, so instead the back propagation algorithm is commonly used to find weights which will approximate the desired behaviour.
 Back propagation works by calculating the difference between each output of the network and the expected output for the inputs to the network, then propagating this error backwards through the network to adjust the weights and reduce the error in the future. By repeating this train and test loop over a large range of valid inputs, the neural network will learn the expected behaviour and the errors will decrease. Back propagation can be run for any number of valid inputs, however the network will eventually reach a state where back propagation can no longer reduce the average error.
-In some cases, the inputs used to train the network can be picked randomly and the expected output can be calculated directly from this, e.g. a network trained to add numbers or apply the sin function to its input. Other cases require the training examples to be pre computed, for example, in training a network to recognise the character in an image, the character in each image will have to be manually given as the expected output.
+In some cases, the inputs used to train the network can be picked randomly and the expected output can be found without manual intervention since they are simple enough to calculate, e.g. a network trained to add numbers or apply the sin function. Other cases require the training examples to be pre-computed, e.g. a network that is supposed to recognise letters in an image, since this cannot precisely be calculated directly.
 
 This graph shows how the average total error of a network decreases as back propagation teaches the network using 50,000 examples. The network trained is a two input and two output network with 40 neurons in a hidden layer used to convert Cartesian coordinates to polar coordinates.
 
 <h1>The Algorithm</h1>
 
 <h2>Initialisation</h2>
-Before the back propagation is run, the weights all synapses in the network are initialised to small random values, usually between -1 and 1. The range of the initial values is not important so long as the weights are not all equal, in this case, back propagation will change each weight by the same amount and the behaviour of the network will never change significantly.
+Before the back propagation is run, the weights of all synapses in the network are initialised to small random values, usually between -1 and 1. The range of the initial values is not important so long as the weights are not all equal, in this case, back propagation will change each weight by the same amount and the behaviour of the network will never change significantly.
 
 <h2>Train Test Loop</h2>
 Once all weights are initialised, apply an input in the training examples to the network and measure the error for each output of the network which is simply the difference between the actual outputs and the expected outputs.
@@ -206,8 +206,10 @@ Finally, each synaptic weight is adjusted by the product of the learning rate, t
 The final set of synapses leading to the output layer are adjusted by the same product without the gradient term, as the output neurons do not apply the activation function.
 The error propagation and weight adjustment is repeated until the errors reduce below a value acceptable to the designer of the network.
 
-<h2>Learning Rate</h2>
-This value can fixed, usually around 0.1 to avoid overcompensation when adjusting weights, however the rate can be changed dynamically to achieve better results. For example, the learning rate could be decrease during execution to make rough adjustments at the start then fine tune the weights near end.
+<h2>Learning Rate and Momentum</h2>
+This value is used to control the rate of learning and prevent overshooting the target; this happens when the network learns too quickly, so this value needs to be low (usually around 0.1), but if it is too low the network learns a lot slower.
+One workaround for this is dynamically changing the rate; when the network is first started the value could be higher to make rougher adjustments and then lowered later on to fine tune the weights near the end. The downside of this is that it can be hard to get the optimal rate for each stage of the network - if it doesn't decrease quick enough, then the network will learn to quickly and overshoot.
+This problem can be solved by introducing a momentum term. Learning too quickly can mean reaching a stage where the weights oscillate between some values, so the back propagation algorithm no longer has any effect on the network. By adding an additional term to the algorithm, the weights are influenced by the direction they previously moved in. This stops them from oscillating, and also helps speed up the initial stages where the weights move in the same direction for a long time.
 
 <h1>Pseudo code</h1>
 Below is pseudo code implementing back propagation on a network with one medial layer.
@@ -258,7 +260,6 @@ Where  is the weight between medial neuron  and output ,  is the error at  and  
 
 <h1>Limitations</h1>
 
-<h1>Momentum</h1>
 		       			  
 		       </div>
 		       <!-- End Content Column -->
