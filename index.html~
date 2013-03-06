@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Faux Column CSS Layouts - 3 Column - faux-3-3-col</title>
+<title>Neural Networks and their applications</title>
 <link rel="stylesheet" type="text/css" href="main.css" />
 <style type="text/css">
 h1 {
@@ -139,30 +139,26 @@ $.fn.hoverClass = function(c) {
 	</style>
 <ul id="nav-one" class="nav">
 			<li>
-				<a href="#item1">Introduction</a>
+				<a href="index.html">Introduction</a>
 				<ul style="opacity: 0.9999; display: block;">
-					<li><a href="#item1.1">item 1.1</a></li>
-					<li><a href="#item1.2">item 1.2</a></li>
-					<li><a href="#item1.3">item 1.3</a></li>
-					<li><a href="#item1.4">item 1.4</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href="#item2">Simple Perceptron</a>
+				<a href="perceptron.html">Simple Perceptron</a>
 				<ul style="opacity: 0.9999; display: block;">
 					<li><a href="#item2.1">item 2.1</a></li>
 					<li><a href="#item2.2">item 2.2</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href="#item3">Multilayer Perceptron</a>
+				<a href="multiperceptron.html">Multilayer Perceptron</a>
 				<ul style="opacity: 0.9999; display: block;">
 					<li><a href="#item3.1">item 3.1</a></li>
 					<li><a href="#item3.2">item 3.2</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href="#item4">Backpropagation</a>
+				<a href="backpropagation.html">Backpropagation</a>
 				<ul>
 					<li><a href="#item4.1">item 4.1</a></li>
 					<li><a href="#item4.2">item 4.2</a></li>
@@ -190,18 +186,28 @@ $.fn.hoverClass = function(c) {
 					 
 					 <br /><br />
 					 
-					 <center<h1>Neural Networks</h1></center>	 
+					 <center<h1>What are neural networks?</h1></center>	 
 					 <br /><br /><br />
                      
-                     <p> A biological neural network is composed of a group or groups of chemically connected or functionally associated neurons. A single neuron may be connected to many other neurons and the total number of neurons and connections in a network may be extensive. Connections, called synapses, are usually formed from axons to dendrites, though dendrodendritic microcircuits[2] and other connections are possible. Apart from the electrical signaling, there are other forms of signaling that arise from neurotransmitter diffusion.</p>
-
-<p>
-Artificial intelligence and cognitive modeling try to simulate some properties of biological neural networks. While similar in their techniques, the former has the aim of solving particular tasks, while the latter aims to build mathematical models of biological neural systems.
-</p>
-In the artificial intelligence field, artificial neural networks have been applied successfully to speech recognition, image analysis and adaptive control, in order to construct software agents (in computer and video games) or autonomous robots. Most of the currently employed artificial neural networks for artificial intelligence are based on statistical estimations, classification optimization and control theory.
-
-The cognitive modelling field involves the physical or mathematical modeling of the behavior of neural systems; ranging from the individual neural level (e.g. modeling the spike response curves of neurons to a stimulus), through the neural cluster level (e.g. modelling the release and effects of dopamine in the basal ganglia) to the complete organism (e.g. behavioral modelling of the organism's response to stimuli). Artificial intelligence, cognitive modelling, and neural networks are information processing paradigms inspired by the way biological neural systems process data. </p>
-				     
+                               <p> Neural Networks are logical (or physical) structures in which multiple nodes communicate with each other
+                               through synapses that interconnect them. They respond to input by modifying their behaviour, self-adjusting to create
+                               consistent responses.<p>
+                               <br /><br />
+                               <center><p>ANN - Artificial Neural Networks</p></center>
+                               <br /><br />
+                               
+                               <p>ANNs help to address problems whose solutions are complex and impractical to formulate explicitly. Their idea is analogous to
+                               the structure and behaviour of the biological nervous system. How the human brain actually works is an elaborate and complex mystery
+                               so the actual models rely more on the observed brain performance characteristic. This includes exhibiting particular characteristics like learning
+                               from experience, deriving from previous data to the new one and extracting abstract but valuable data from input cointaining irrelevant data.
+                               </p>
+			       <br ><br />
+			       <center><p>How do ANNs work.</p></center>
+			        <br ><br />
+			       <p> The esssential function of ANNs is to compute output nodes using its inputs and weights (synapses). However, such a network will need to be trained, analogously to
+			       human brain learning patterns and remembering relevant information. To achieve this, various training algorithms have been developed, mostly of two types; supervised and
+			       unsupervised learning. 
+			       </p>
 		       			  
 		       </div>
 		       <!-- End Content Column -->
@@ -223,7 +229,7 @@ The cognitive modelling field involves the physical or mathematical modeling of 
          <!-- Begin Footer -->
          <div id="footer">
 		       
-               This is the Footer		
+              Imperial College Computing		
 
          </div>
 		 <!-- End Footer -->
