@@ -209,7 +209,7 @@ The error propagation and weight adjustment is repeated until the errors reduce 
 <h2>Learning Rate and Momentum</h2>
 This value is used to control the rate of learning and prevent overshooting the target; this happens when the network learns too quickly, so this value needs to be low (usually around 0.1), but if it is too low the network learns a lot slower.
 One workaround for this is dynamically changing the rate; when the network is first started the value could be higher to make rougher adjustments and then lowered later on to fine tune the weights near the end. The downside of this is that it can be hard to get the optimal rate for each stage of the network - if it doesn't decrease quick enough, then the network will learn to quickly and overshoot.
-This problem can be solved by introducing a momentum term. Learning too quickly can mean reaching a stage where the weights oscillate between some values, so the back propagation algorithm no longer has any effect on the network. By adding an additional term to the algorithm, the weights are influenced by the direction they previously moved in. This stops them from oscillating, and also helps speed up the initial stages where the weights move in the same direction for a long time.
+This problem can be solved by introducing a momentum term. Learning too quickly can mean reaching a stage where the weights oscillate around the target, so it is never reached. By adding an additional term to the algorithm, the weights are influenced by the direction they previously moved in. This stops them from oscillating, and also helps speed up the initial stages where the weights move in the same direction for a long time.
 
 <h1>Pseudo code</h1>
 Below is pseudo code implementing back propagation on a network with one medial layer.
@@ -259,6 +259,7 @@ As stated before, back propagation applies an input to the network and measures 
 Where  is the weight between medial neuron  and output ,  is the error at  and  is the output of . However, this does not adjust the weights between the input and first medial layer, or between medial layers. So the error is propagated backwards through the layers
 
 <h1>Limitations</h1>
+There are some problems associated with the back propagation algorithm. For instance, it might not find a solution - there is not guarantee that the network will reach its target. The network is also very sensitive to the number of medial layers. If there are too little, it might not be able to learn what you want it to, but if there are too many then it will learn very slowly. This means that a neural network has to be reconfigured for each function you want it to do, unless they are similar. This takes a lot of time, and requires some experience to get right without resorting to trial and error.
 
 		       			  
 		       </div>
