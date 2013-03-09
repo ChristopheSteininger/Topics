@@ -4,12 +4,23 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 }
+
 h1 {
 	font-size: 24px;
+	margin-bottom: 0.5em;
 }
+
+h2 {
+	font-size: 20px;
+	margin-bottom: 0.1em;
+}
+
 pre {
 	font-size: 13px;
+}
 
+p {
+	margin-bottom: 1.5em;
 }
 
 #wrapper { 
@@ -24,12 +35,12 @@ pre {
 }
 #header {
 	color: #333;
-	width: 902px;
-	padding: 10px;
+	width: 100%;
+	padding: 0px;
 	height: 100px;
 	margin: 0px 0px 0px 0px;
 	/* [disabled]background: #D1DBDB; */
-  background: black url(images/neural_network_by_wieschoo-d5gyq2l.jpg) center no-repeat;
+ 	background: black url(images/neural_network_by_wieschoo-d5gyq2l.jpg) center no-repeat;
 }
 #navigation {
 	color: rgb(0,0,0);
@@ -53,7 +64,7 @@ pre {
  margin: 0px auto;
  padding: 10px;
  /*width: 560px;*/
- width: 50%;
+ width: 60%;
  display: inline;
  position: relative;
  background: #D3E3E1;
@@ -68,7 +79,7 @@ pre {
  float: right;
 }
 #footer { 
- width: 902px;
+ width: 1102px;
  clear: both;
  color: #333;
  background: #ABBEBE;
@@ -86,6 +97,7 @@ pre {
 	margin: 0;
 	padding: 0;
 	top: -15px;
+	left: 175px;
 }
 
 .nav {
