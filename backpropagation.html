@@ -1,211 +1,247 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Neural Networks and their applications</title>
-<link rel="stylesheet" type="text/css" href="main.css" />
+
+    <title>Neural Networks and their applications</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    
 </head>
 
 <body>
 
-   <!-- Begin Wrapper -->
-   
+    <div id="wrapper">
 
-<div id="wrapper">
-   
-         <!-- Begin Header -->
-         <div id="header">
-		 
-		     		 
-			   
-		 </div>
+        <div id="header">		 
+        </div>
 
+        <div id="navigation">
 
-		 <!-- End Header -->
-		 
-		 <!-- Begin Navigation -->
-         <div id="navigation">
+            <ul id="nav-one" class="nav">
 
-<ul id="nav-one" class="nav">
-			<li>
-				<a href="index.html">Introduction</a>
-				<ul style="opacity: 0.9999; display: block;">
-				</ul>
-			</li>
-			<li>
-				<a href="perceptron.html">Simple Perceptron</a>
-				<ul style="opacity: 0.9999; display: block;">
-					
-				</ul>
-			</li>
-			<li>
-				<a href="multiperceptron.html">Multilayer Perceptron</a>
-				<ul style="opacity: 0.9999; display: block;">
-					
-				</ul>
-			</li>
-			<li>
-				<a href="backpropagation.html">Backpropagation</a>
-				<ul>
-				</ul>
-			</li>
-		</ul>
-</div>
-		 <!-- End Navigation -->
-		 
-         <!-- Begin Faux Columns -->
-		 <div id="faux">
-		 
-		       <!-- Begin Left Column -->
-		       <div id="leftcolumn">
-		 
-		             
-		 
-		       </div>
-		       <!-- End Left Column -->
-		 
-		       <!-- Begin Content Column -->
-		       <div id="content">
+                <li>
+                    <a href="index.html">Introduction</a>
+                </li>
 
-<h1>Introduction</h1>
-<p>
-In large neural networks simulating more complex functions, finding the weights of each synapse is too complex to be done manually, so instead the back propagation algorithm is commonly used to find weights which will approximate the desired behaviour.
-Back propagation works by calculating the difference between each output of the network and the expected output for the inputs to the network, then propagating this error backwards through the network to adjust the weights and reduce the error in the future. By repeating this train and test loop over a large range of valid inputs, the neural network will learn the expected behaviour and the errors will decrease. Back propagation can be run for any number of valid inputs, however the network will eventually reach a state where back propagation can no longer reduce the average error.
-In some cases, the inputs used to train the network can be picked randomly and the expected output can be found without manual intervention since they are simple enough to calculate, e.g. a network trained to add numbers or apply the sin function. Other cases require the training examples to be pre-computed, e.g. a network that is supposed to recognise letters in an image, since this cannot precisely be calculated directly.
-</p>
+                <li>
+                    <a href="perceptron.html">Simple Perceptron</a>
+                </li>
 
-<p>
-This graph shows how the average total error of a network decreases as back propagation teaches the network using 50,000 examples. The network trained is a two input and two output network with 40 neurons in a hidden layer used to convert Cartesian coordinates to polar coordinates.
-</p>
+                <li>
+                    <a href="multiperceptron.html">Multilayer Perceptron</a>
+                </li>
 
-<h1>The Algorithm</h1>
+                <li>
+                    <a href="backpropagation.html">Backpropagation</a>
+                </li>
+                
+            </ul>
+            
+        </div>
+ 
+        <div id="faux">
+        
+            <div id="leftcolumn">
+		    </div>
+		    
+		    <div id="content">
 
-<h2>Initialisation</h2>
-<p>
-Before the back propagation is run, the weights of all synapses in the network are initialised to small random values, usually between -1 and 1. The range of the initial values is not important so long as the weights are not all equal, in this case, back propagation will change each weight by the same amount and the behaviour of the network will never change significantly.
-</p>
+                <h1>Introduction</h1>
+                
+                <p>
+                    In large neural networks simulating more complex functions, finding the weights of each synapse is too complex
+                    to be done manually, so instead the back propagation algorithm is commonly used  to find weights which will
+                    approximate the desired behaviour. Back propagation works by calculating the difference between each output of
+                    the network and the expected output for the inputs to the network, then propagating this error backwards
+                    through the network to adjust the weights and reduce the error in the future. By repeating this train and test
+                    loop over a large range of valid inputs, the neural network will learn the expected behaviour and the errors
+                    will decrease. Back propagation can be run for any number of valid inputs, however the network will eventually
+                    reach a state where back propagation can no longer reduce the average error. In some cases, the inputs used to
+                    train the network can be picked randomly and the expected output can be found without manual intervention
+                    since they are simple enough to calculate, e.g. a network trained to add numbers or apply the sin function.
+                    Other cases require the training examples to be pre-computed, e.g. a network that is supposed to recognise
+                    letters in an image, since this cannot precisely be calculated directly.
+               </p>
 
-<h2>Train Test Loop</h2>
-<p>
-Once all weights are initialised, apply an input in the training examples to the network and measure the error for each output of the network which is simply the difference between the actual outputs and the expected outputs.
-</p>
+                <p>
+                    This graph shows how the average total error of a network decreases as back propagation teaches the network
+                    using 50,000 examples. The network trained is a two input and two output network with 40 neurons in a hidden
+                    layer used to convert Cartesian coordinates to polar coordinates.
+                </p>
 
-<h3>Error Propagation</h3>
-<p>
-The first step is to propagate the errors backwards by computing the delta value, or error value of each neuron.
-First, calculate the delta values for each neuron in the medial layer by multiplying the weight of each synapse leaving the neuron by the error of the output which the synapse connects to. All weight-error products of a neuron are then summed to give the final delta value of that neuron.
-</p>
-[D1]
-<p>
-The network contains another layer, so this procedure is repeated again for the input layer, using the previously calculated delta value of a neuron in the medial layer in place of the error values.
-</p>
-[D2]
-<p>
-These steps are repeated until the delta value for each output and medial neuron has been calculated. The procedure described here is equivalent to running the network backwards by using the error values as an input which is feed to the output neurons while ignoring the activation function.
-</p>
+                <h1>The Algorithm</h1>
 
-<h3>Weight Adjustment</h3>
-<p>
-Finally, each synaptic weight is adjusted by the product of the learning rate, the input to the synapse, the delta value of the neuron which the synapse connects to and gradient of the activation function at the output of the neuron.
-</p>
-[D3]
-<p>
-The final set of synapses leading to the output layer are adjusted by the same product without the gradient term, as the output neurons do not apply the activation function.
-The error propagation and weight adjustment is repeated until the errors reduce below a value acceptable to the designer of the network.
-</p>
+                <h2>Initialisation</h2>
+                
+                <p>
+                    Before the back propagation is run, the weights of all synapses in the network are initialised to small random
+                    values, usually between -1 and 1. The range of the initial values is not important so long as the weights are
+                    not all equal, in this case, back propagation will change each weight by the same amount and the behaviour of
+                    the network will never change significantly.
+                </p>
 
-<h2>Learning Rate and Momentum</h2>
-<p>
-This value is used to control the rate of learning and prevent overshooting the target; this happens when the network learns too quickly, so this value needs to be low (usually around 0.1), but if it is too low the network learns a lot slower.
-</p>
-<p>
-One workaround for this is dynamically changing the rate; when the network is first started the value could be higher to make rougher adjustments and then lowered later on to fine tune the weights near the end. The downside of this is that it can be hard to get the optimal rate for each stage of the network - if it doesn't decrease quick enough, then the network will learn too quickly and overshoot.
-This problem can be solved by introducing a momentum term. Learning too quickly can mean reaching a stage where the weights oscillate around the target, so it is never reached. By adding an additional term to the algorithm, the weights are influenced by the direction they previously moved in. This stops them from oscillating, and also helps speed up the initial stages where the weights move in the same direction for a long time.
-</p>
+                <h2>Train Test Loop</h2>
+                
+                <p>
+                Once all weights are initialised, apply an input in the training examples to the network and measure the error for
+                each output of the network which is simply the difference between the actual outputs and the expected outputs.
+                </p>
 
-<h1>Pseudo code</h1>
-<p>
-Below is pseudo code implementing back propagation on a network with one medial layer.
-</p>
-<p><pre>
+                <h3>Error Propagation</h3>
+                
+                <p>
+                    The first step is to propagate the errors backwards by computing the delta value, or error value of each
+                    neuron. First, calculate the delta values for each neuron in the medial layer by multiplying the weight of
+                    each synapse leaving the neuron by the error of the output which the synapse connects to. All weight-error
+                    products of a neuron are then summed to give the final delta value of that neuron.
+                </p>
+                
+                [D1]
+                
+                <p>
+                    The network contains another layer, so this procedure is repeated again for the input layer, using the
+                    previously calculated delta value of a neuron in the medial layer in place of the error values.
+                </p>
+                
+                [D2]
+                
+                <p>
+                    These steps are repeated until the delta value for each output and medial neuron has been calculated. The
+                    procedure described here is equivalent to running the network backwards by using the error values as an input
+                    which is feed to the output neurons while ignoring the activation function.
+                </p>
+
+                <h3>Weight Adjustment</h3>
+                
+                <p>
+                    Finally, each synaptic weight is adjusted by the product of the learning rate, the input to the synapse, the
+                    delta value of the neuron which the synapse connects to and gradient of the activation function at the output
+                    of the neuron.
+                </p>
+                
+                [D3]
+
+                <p>
+                    The final set of synapses leading to the output layer are adjusted by the same product without the gradient
+                    term, as the output neurons do not apply the activation function. The error propagation and weight adjustment
+                    is repeated until the errors reduce below a value acceptable to the designer of the network.
+                </p>
+
+                <h2>Learning Rate and Momentum</h2>
+
+                <p>
+                    This value is used to control the rate of learning and prevent overshooting the target; this happens when the
+                    network learns too quickly, so this value needs to be low (usually around 0.1), but if it is too low the
+                    network learns a lot slower.
+                </p>
+                
+                <p>
+                    One workaround for this is dynamically changing the rate; when the network is first started the value could be
+                    higher to make rougher adjustments and then lowered later on to fine tune the weights near the end. The
+                    downside of this is that it can be hard to get the optimal rate for each stage of the network - if it doesn't
+                    decrease quick enough, then the network will learn too quickly and overshoot. This problem can be solved by
+                    introducing a momentum term. Learning too quickly can mean reaching a stage where the weights oscillate around
+                    the target, so it is never reached. By adding an additional term to the algorithm, the weights are influenced
+                    by the direction they previously moved in. This stops them from oscillating, and also helps speed up the
+                    initial stages where the weights move in the same direction for a long time.
+                </p>
+
+                <h1>Pseudo code</h1>
+                
+                <p>
+                    Below is pseudo code implementing back propagation on a network with one medial layer.
+                </p>
+                
+                <p>
+                <pre>
+                
 procedure backPropagation():
-   inputs := getInput()
 
-   expected := getExpected(inputs)
-   actual := runNetwork(inputs)
+    inputs := getInput()
 
-   errors := calculateErrors(expected, actual)
+    expected := getExpected(inputs)
+    actual := runNetwork(inputs)
 
-   // Calculate the delta values of the medial neurons.
-   for n := 0 to medialNeuronCount:
-      sum := 0
-      for o := 0 to outputCount:
-         sum := sum + weightsOut[n, o] * errors[o]
-      endfor
-      deltas[n] := sum
-   endfor
+    errors := calculateErrors(expected, actual)
 
-   // Adjust the weights between the input and medial neurons
-   for i := 0 to inputCount:
-      for n := 0 to medialNeuronCount:
-         weightsIn[i, n] := weightsIn[i, n] + learningRate
-            * inputs[i] * deltas[n] * dActivation(medialOut[n])
-      endfor
-   endfor
+    // Calculate the delta values of the medial neurons.
+    for n := 0 to medialNeuronCount:
+        sum := 0
+        for o := 0 to outputCount:
+            sum := sum + weightsOut[n, o] * errors[o]
+        endfor
+        deltas[n] := sum
+    endfor
 
-   // Adjust the weights between the medial and output neurons
-   for n := 0 to medialNeuronCount:
-      for o := 0 to outputCount:
-         weightsOut[n, o] := weightsOut[n, o] + learningRate
-            * medialOut[n] * errors[o]
-      endfor
-   endfor
+    // Adjust the weights between the input and medial neurons
+    for i := 0 to inputCount:
+        for n := 0 to medialNeuronCount:
+            weightsIn[i, n] := weightsIn[i, n] + learningRate
+                * inputs[i] * deltas[n] * dActivation(medialOut[n])
+        endfor
+    endfor
 
-   repeat procedure until inputs exhausted or total error acceptable
+    // Adjust the weights between the medial and output neurons
+    for n := 0 to medialNeuronCount:
+        for o := 0 to outputCount:
+            weightsOut[n, o] := weightsOut[n, o] + learningRate
+                * medialOut[n] * errors[o]
+        endfor
+    endfor
+
+    repeat procedure until inputs exhausted or total error acceptable
+    
 endprocedure
-</pre></p>
 
-<h1>Intuition</h1>
-<p>
-The previous section describes how the back propagation algorithm teaches a network, but not why.
-As stated before, back propagation applies an input to the network and measures the error between the expected and actual outputs. These errors can be brought down to zero if the network were given the same inputs again by adjusting the weights of synapses leading to the output neurons using the delta rule:
-</p>
-<p>
-Where  is the weight between medial neuron  and output ,  is the error at  and  is the output of . However, this does not adjust the weights between the input and first medial layer, or between medial layers. So the error is propagated backwards through the layers
-</p>
+                </pre></p>
 
-<h1>Limitations</h1>
-<p>
-There are some problems associated with the back propagation algorithm. For instance, it might not find a solution - there is not guarantee that the network will reach its target. The network is also very sensitive to the number of medial layers. If there are too little, it might not be able to learn what you want it to, but if there are too many then it will learn very slowly. This means that a neural network has to be reconfigured for each function you want it to do, unless they are similar. This takes a lot of time, and requires some experience to get right without resorting to trial and error.
-Also, as mentioned before, the speed at which a neural network will learn depends on the learning rate, but the learning rate cannot be set to high without risking oscillations. This marks a fairly severe limitation on back propagation and greatly reduces its speed.
-</p>
+                <h1>Intuition</h1>
+
+                <p>
+                    The previous section describes how the back propagation algorithm teaches a network, but not why. As stated
+                    before, back propagation applies an input to the network and measures the error between the expected and actual
+                    outputs. These errors can be brought down to zero if the network were given the same inputs again by adjusting
+                    the weights of synapses leading to the output neurons using the delta rule:
+                </p>
+
+                <p>
+                    Where ??? is the weight between medial neuron ??? and output ???, ??? is the error at ??? and ??? is the output
+                    of ???. However, this does not adjust the weights between the input and first medial layer, or between medial
+                    layers. So the error is propagated backwards through the layers    
+                </p>
+
+                <h1>Limitations</h1>
+
+                <p>
+                    There are some problems associated with the back propagation algorithm. For instance, it might not find a solution
+                    - there is not guarantee that the network will reach its target. The network is also very sensitive to the number
+                    of medial layers. If there are too little, it might not be able to learn what you want it to, but if there are too
+                    many then it will learn very slowly. This means that a neural network has to be reconfigured for each function you
+                    want it to do, unless they are similar. This takes a lot of time, and requires some experience to get right without
+                    resorting to trial and error.
+                </p>
+                
+                <p>
+                    Also, as mentioned before, the speed at which a neural network will learn depends on the learning rate, but the
+                    learning rate cannot be set to high without risking oscillations. This marks a fairly severe limitation on back
+                    propagation and greatly reduces its speed.
+                </p>
 		       			  
-		       </div>
-		       <!-- End Content Column -->
-			   
-			   
-			   
-			   <!-- Begin Right Column -->
-		       <div id="rightcolumn">
-		 
-		             
-							
-							
-		       </div>
-		       <!-- End Right Column -->
+		    </div>
+		    
+		    <div id="rightcolumn">
+            </div>
+		    
 
-         </div>	   
-         <!-- End Faux Columns --> 
-
-         <!-- Begin Footer -->
-         <div id="footer">
-		       
+        </div>	   
+        
+        <div id="footer">
+		     
               Imperial College Computing		
 
-         </div>
-		 <!-- End Footer -->
-		 
-   </div>
-   <!-- End Wrapper -->
+        </div>
+         
+    </div>
+   
 </body>
+
 </html>
