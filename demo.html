@@ -1,209 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Neural Networks and their applications</title>
-<link rel="stylesheet" type="text/css" href="main.css" />
-<style type="text/css">
-h1 {
-	font-size: 24px;
-}
-</style>
+
+    <title>Neural Networks and their applications</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
 </head>
 
 <body>
 
-   <!-- Begin Wrapper -->
-   
+    <div id="wrapper">
 
-<div id="wrapper">
-   
-         <!-- Begin Header -->
-         <div id="header">
-		 
-		     		 
-			   
-		 </div>
+        <div id="header">		 
+        </div>
 
+        <div id="navigation">
 
-		 <!-- End Header -->
-		 
-		 <!-- Begin Navigation -->
-         <div id="navigation">
-		 
+            <ul id="nav-one" class="nav">
 
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$("#nav-one li").hover(
-		function(){ $("ul", this).fadeIn("fast"); }, 
-		function() { } 
-	);
-	if (document.all) {
-		$("#nav-one li").hoverClass ("sfHover");
-	}
-});
+                <li>
+                    <a href="index.html">Introduction</a>
+                </li>
 
-$.fn.hoverClass = function(c) {
-	return this.each(function(){
-		$(this).hover( 
-			function() { $(this).addClass(c);  },
-			function() { $(this).removeClass(c); }
-		);
-	});
-};	
+                <li>
+                    <a href="perceptron.html">Simple Perceptron</a>
+                </li>
 
-</script>
-<style type="text/css">
+                <li>
+                    <a href="multiperceptron.html">Multilayer Perceptron</a>
+                </li>
 
-/* Navigation */
-.nav, .nav ul { 
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	top: -15px;
-}
-
-.nav {
-  font-family: Arial, Helvetica, sans-serif;
-  z-index: 100;
-  position: relative;
-}
-.nav li {
-  border-left: 1px solid #000;
-  float: left;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
-.nav li a, .nav li a:link, .nav li a:active, .nav li a:visited {
-  font: bold 1.22em/25px Arial, Helvetica, sans-serif;
-  background: #91B3CE;
-  color: #3A474B;
-  display: block;
-  padding: 0 9px;
-  text-transform: lowercase;
-  text-decoration: none;
-}
-
-.nav li a:hover {
-  background: #91B3CE;
-  color: #91B3CE;	
-
-}
-#nav-one li:hover a, 
-#nav-one li.sfHover a {
-  background: #91B3CE;
-  color: #000;
-}
-#nav-one li:hover ul a, 
-#nav-one li.sfHover ul a {
-  background: #91B3CE;
-  color: #384352;	
-}
-#nav-one li:hover ul a:hover, 
-#nav-one li.sfHover ul a:hover {
-  background: #ccc;
-  color: #000;	
-}
-
-.nav ul {
-  background: #565656;
-  border-bottom: 1px solid #000;
-  list-style: none;
-  margin: 0;
-  width: 100px;
-  position: absolute;
-  top: -999em;
-  left: -1px;
-}
-.nav li:hover ul,
-.nav li.sfHover ul {
-  top: 25px;
-}
-.nav ul li {
-  border: 0;
-  float: none;
-}
-.nav ul a {
-  border: 1px solid #000;
-  border-bottom: 0;
-  padding-right: 20px;
-  width: 80px;
-  white-space: nowrap;
-}
-.nav ul a:hover {
-  background: #ccc;
-  color: #000;
-}
-	</style>
-<ul id="nav-one" class="nav">
-			<li>
-				<a href="index.html">Introduction</a>
-				<ul style="opacity: 0.9999; display: block;">
-				</ul>
-			</li>
-			<li>
-				<a href="perceptron.html">Simple Perceptron</a>
-				<ul style="opacity: 0.9999; display: block;">
-					
-				</ul>
-			</li>
-			<li>
-				<a href="multiperceptron.html">Multilayer Perceptron</a>
-				<ul style="opacity: 0.9999; display: block;">
-					
-				</ul>
-			</li>
-			<li>
-				<a href="backpropagation.html">Backpropagation</a>
-				<ul>
-				</ul>
-			</li>
-		</ul>
-</div>
-		 <!-- End Navigation -->
-		 
-         <!-- Begin Faux Columns -->
-		 <div id="faux">
-		 
-		       <!-- Begin Left Column -->
-		       <div id="leftcolumn">
-		 
-		             
-		 
-		       </div>
-		       <!-- End Left Column -->
-		 
-		       <!-- Begin Content Column -->
+                <li>
+                    <a href="backpropagation.html">Backpropagation</a>
+                </li>
+                
+            </ul>
+            
+        </div>
+ 
+        <div id="faux">
+        
+            <div id="leftcolumn">
+		    </div>
+		    
+		    <div id="content">
+                  
            <applet codebase="applet/bin/" code="backpropagation.Main"
                    width=400 height=200>
            </applet>
-		       <!-- End Content Column -->
-			   
-			   
-			   
-			   <!-- Begin Right Column -->
-		       <div id="rightcolumn">
+		       			  
+		    </div>
+		    
+		    <div id="rightcolumn">
+		    </div>
+
+        </div>	   
+
+        <div id="footer">
+		      
+            Imperial College Computing		
+
+        </div>
 		 
-		             
-							
-							
-		       </div>
-		       <!-- End Right Column -->
-
-         </div>	   
-         <!-- End Faux Columns --> 
-
-         <!-- Begin Footer -->
-         <div id="footer">
-		       
-              Imperial College Computing		
-
-         </div>
-		 <!-- End Footer -->
-		 
-   </div>
-   <!-- End Wrapper -->
+    </div>
+    
 </body>
+
 </html>
+
