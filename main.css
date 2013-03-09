@@ -7,14 +7,20 @@ body {
 h1 {
 	font-size: 24px;
 }
+pre {
+	font-size: 13px;
+
+}
+
 #wrapper { 
  margin: 0 auto;
- width: 922px;
+ width: 1122px;
 }
 #faux {
-	background: url(faux-2-3-col.png);
+	/*background: url(images/faux-2-3-col.png);*/
+	background: #91B3CE;
 	overflow: hidden; /* Paul O Brien Fix for IE www.pmob.co.uk */
-	width: 100%
+	width:100%
 }
 #header {
 	color: #333;
@@ -23,7 +29,7 @@ h1 {
 	height: 100px;
 	margin: 0px 0px 0px 0px;
 	/* [disabled]background: #D1DBDB; */
-  background: black url(http://fc04.deviantart.net/fs71/f/2012/279/f/a/neural_network_by_wieschoo-d5gyq2l.jpg) center no-repeat;
+  background: black url(images/neural_network_by_wieschoo-d5gyq2l.jpg) center no-repeat;
 }
 #navigation {
 	color: rgb(0,0,0);
@@ -43,11 +49,14 @@ h1 {
 #content { 
  float: left;
  color: #333;
- margin: 10px 13px;
- padding: 0px;
- width: 460px;
+ /*margin: 10px 13px;*/
+ margin: 0px auto;
+ padding: 10px;
+ /*width: 560px;*/
+ width: 50%;
  display: inline;
  position: relative;
+ background: #D3E3E1;
 }
 #rightcolumn { 
  display: inline;
@@ -122,32 +131,4 @@ h1 {
   color: #000;	
 }
 
-.nav ul {
-  background: #565656;
-  border-bottom: 1px solid #000;
-  list-style: none;
-  margin: 0;
-  width: 100px;
-  position: absolute;
-  top: -999em;
-  left: -1px;
-}
-.nav li:hover ul,
-.nav li.sfHover ul {
-  top: 25px;
-}
-.nav ul li {
-  border: 0;
-  float: none;
-}
-.nav ul a {
-  border: 1px solid #000;
-  border-bottom: 0;
-  padding-right: 20px;
-  width: 80px;
-  white-space: nowrap;
-}
-.nav ul a:hover {
-  background: #ccc;
-  color: #000;
-}
+

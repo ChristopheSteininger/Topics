@@ -25,30 +25,6 @@
 		 
 		 <!-- Begin Navigation -->
          <div id="navigation">
-		 
-
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$("#nav-one li").hover(
-		function(){ $("ul", this).fadeIn("fast"); }, 
-		function() { } 
-	);
-	if (document.all) {
-		$("#nav-one li").hoverClass ("sfHover");
-	}
-});
-
-$.fn.hoverClass = function(c) {
-	return this.each(function(){
-		$(this).hover( 
-			function() { $(this).addClass(c);  },
-			function() { $(this).removeClass(c); }
-		);
-	});
-};	
-
-</script>
 
 <ul id="nav-one" class="nav">
 			<li>
@@ -91,11 +67,15 @@ $.fn.hoverClass = function(c) {
 		       <!-- Begin Content Column -->
 		       <div id="content">
 <h1>Introduction</h1>
+<p>
 In large neural networks simulating more complex functions, finding the weights of each synapse is too complex to be done manually, so instead the back propagation algorithm is commonly used to find weights which will approximate the desired behaviour.
 Back propagation works by calculating the difference between each output of the network and the expected output for the inputs to the network, then propagating this error backwards through the network to adjust the weights and reduce the error in the future. By repeating this train and test loop over a large range of valid inputs, the neural network will learn the expected behaviour and the errors will decrease. Back propagation can be run for any number of valid inputs, however the network will eventually reach a state where back propagation can no longer reduce the average error.
 In some cases, the inputs used to train the network can be picked randomly and the expected output can be found without manual intervention since they are simple enough to calculate, e.g. a network trained to add numbers or apply the sin function. Other cases require the training examples to be pre-computed, e.g. a network that is supposed to recognise letters in an image, since this cannot precisely be calculated directly.
+</p>
 
+<p>
 This graph shows how the average total error of a network decreases as back propagation teaches the network using 50,000 examples. The network trained is a two input and two output network with 40 neurons in a hidden layer used to convert Cartesian coordinates to polar coordinates.
+</p>
 
 <h1>The Algorithm</h1>
 
@@ -126,9 +106,9 @@ This problem can be solved by introducing a momentum term. Learning too quickly 
 
 <h1>Pseudo code</h1>
 Below is pseudo code implementing back propagation on a network with one medial layer.
-procedure backPropagation():
-
+<
 <pre>
+procedure backPropagation():
    inputs := getInput()
 
    expected := getExpected(inputs)
