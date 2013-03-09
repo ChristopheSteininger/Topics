@@ -208,7 +208,7 @@ The error propagation and weight adjustment is repeated until the errors reduce 
 
 <h2>Learning Rate and Momentum</h2>
 This value is used to control the rate of learning and prevent overshooting the target; this happens when the network learns too quickly, so this value needs to be low (usually around 0.1), but if it is too low the network learns a lot slower.
-One workaround for this is dynamically changing the rate; when the network is first started the value could be higher to make rougher adjustments and then lowered later on to fine tune the weights near the end. The downside of this is that it can be hard to get the optimal rate for each stage of the network - if it doesn't decrease quick enough, then the network will learn to quickly and overshoot.
+One workaround for this is dynamically changing the rate; when the network is first started the value could be higher to make rougher adjustments and then lowered later on to fine tune the weights near the end. The downside of this is that it can be hard to get the optimal rate for each stage of the network - if it doesn't decrease quick enough, then the network will learn too quickly and overshoot.
 This problem can be solved by introducing a momentum term. Learning too quickly can mean reaching a stage where the weights oscillate around the target, so it is never reached. By adding an additional term to the algorithm, the weights are influenced by the direction they previously moved in. This stops them from oscillating, and also helps speed up the initial stages where the weights move in the same direction for a long time.
 
 <h1>Pseudo code</h1>
