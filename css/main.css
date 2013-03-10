@@ -26,6 +26,7 @@ p {
 pre {
 	font-size: 14px;
 	margin-bottom: 1.5em;
+	border-width: 5px;
 }
 
 textarea {
@@ -54,7 +55,7 @@ textarea {
 	height: 100px;
 	margin: 0px 0px 0px 0px;
 	/* [disabled]background: #D1DBDB; */
- 	background: black url(images/neural_network_by_wieschoo-d5gyq2l.jpg) center no-repeat;
+ 	background: black url(../images/neural_network_by_wieschoo-d5gyq2l.jpg) center no-repeat;
 }
 #navigation {
 	color: rgb(0,0,0);

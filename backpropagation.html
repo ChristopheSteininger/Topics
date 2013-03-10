@@ -3,7 +3,12 @@
 <head>
 
     <title>Neural Networks and their applications</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    
+    <script type="text/javascript" src="js/shCore.js"></script>
+    <script type="text/javascript" src="js/shBrushDelphi.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/shCoreDefault.css" />
+    <script type="text/javascript">SyntaxHighlighter.all()</script>
     
 </head>
 
@@ -88,8 +93,8 @@
                 <h2>Train Test Loop</h2>
                 
                 <p>
-                Once all weights are initialised, apply an input in the training examples to the network and measure the error for
-                each output of the network which is simply the difference between the actual outputs and the expected outputs.
+                    Once all weights are initialised, apply an input in the training examples to the network and measure the error for
+                    each output of the network which is simply the difference between the actual outputs and the expected outputs.
                 </p>
 
                 <h3>Error Propagation</h3>
@@ -157,7 +162,7 @@
                     Below is pseudo code implementing back propagation on a network with one medial layer.
                 </p>
                            
-                <pre><textarea name="code" cols=82 rows=39 readonly>
+                <pre class="brush: pas; gutter: false; toolbar: false;">
                 
 procedure backPropagation():
 
@@ -196,7 +201,7 @@ procedure backPropagation():
     repeat procedure until inputs exhausted or total error acceptable
     
 endprocedure
-                </textarea></pre>
+                </pre>
 
                 <h1>Intuition</h1>
 

@@ -3,7 +3,7 @@
 <head>
 
     <title>Neural Networks and their applications</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
 
 </head>
 
@@ -77,7 +77,7 @@
 
                            <h2>Possible Drawbacks</h2>
 <p>
-Despite all those years of effort on trying to make artificial neural networks resemble the biological model as closely as possible, awareness of their limitations has always been a concern and a topic of lively discussions. Not even the most optimistic scientist will suggest that ANNs will soon duplicate the actual functions of the human brain. Enthusiasm is moderated when the studies show that the actual “intelligence” exhibited by the most sophisticated networks seems to be below the level of a tapeworm. It is, however, an incorrect decision to underestimate the surprising brainlike performance of ANNs that can be achieved in certain cases - something that has happened to the ANN research field before, considerably cooling down the interests and advancements in this field for a period of time. The abilities, even if limited to this day, give a hint that deep understanding of human intelligence may lie close at hand, while the revolutionary applications of this progress are already beginning to arrive.
+Despite all those years of effort on trying to make artificial neural networks resemble the biological model as closely as possible, awareness of their limitations has always been a concern and a topic of lively discussions. Not even the most optimistic scientist will suggest that ANNs will soon duplicate the actual functions of the human brain. Enthusiasm is moderated when the studies show that the actual “intelligence” exhibited by the most sophisticated networks seems to be below the level of a tapeworm. It is, however, an incorrect decision to underestimate the surprising brainlike performance of ANNs that can be achieved in certain cases - something that has happened to the ANN research field before, considerably cooling down the interests and advancements in this field for a period of time. The abilities, even if limited to this day, give a hint that deep understanding of human intelligence may lie close at hand, while the revolutionary applications of this progress are already arriving.
 </p		       			  
 		    </div>
 		    
