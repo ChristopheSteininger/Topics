@@ -6,7 +6,7 @@ class MedialLayer {
     private double[][] weights;
     
     // Calculates the output of the layer with the given inputs.
-    public double[] GetOutput(double[] inputs) {
+    public double[] getOutput(double[] inputs) {
         
         //Debug.Assert(inputs.Length == weights.GetLength(0),
         //        "Input length does not match weight lengths.");
