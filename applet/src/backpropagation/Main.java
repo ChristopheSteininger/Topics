@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
