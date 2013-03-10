@@ -45,35 +45,104 @@
 		    
 		    <div id="content">
                   
-                <h1>What are neural networks?</h1>
+                <h1>History</h1>
                 
                 <p>
-                    Neural Networks are logical (or physical) structures in which multiple nodes communicate with each other through synapses that interconnect them.
-                    They respond to input by modifying their behaviour, self-adjusting to create consistent responses.
+                    Perceptons where originally investigated by Frank Rosenblatt in 1957 at the
+                    Cornell Aeronautical Laboratory at Cornell University. This was an attempt to
+                    understand human memory, learning and cognitive processes. His first attempt
+                    at this was the Mark I Perceptron, which could learn to recognize and identify
+                    optical patterns. Rosenblatt’s work was based upon and also advanced the work
+                    by Warren McCulloch and Walter Pitts. McCulloch and Pitts were the first to
+                    consider the concept of neural networks. They developed the MP neuron which
+                    was based upon the human brains concept of a nerve firing an impulse to
+                    another nerve, only if a threshold value is exceeded. The MP neuron didn’t have
+                    the ability to learn, therefore Rosenblatt tried to solve this problem by
+                    implementing Donald Hebb’s idea that "when an axom of cell A is near
+                    enough to excite cell B and repeatedly, or persistently, takes part in firing it,
+                    some growth process or metabolic change takes place in one or both cells,
+                    such that Aís efficiency as one of the cells firing B is increased". This
+                    implied the idea of a network of neurons which could learn by adjusting the
+                    weights on connections between neurons. This is the idea which a
+                    perceptron work upon.
                 </p>
-                    
-                <div id="img">
-                  
-                    <img src="images/neuron.png" alt="neuron map" align="middle">
-                        
-                </div>
 
-                <h2>ANN - Artificial Neural Networks</h2>
+                <h1>Single Layer Perceptron</h1>
                                
                 <p>
-                    ANNs help to address problems whose solutions are complex and impractical to formulate explicitly. Their idea is analogous to
-                    the structure and behaviour of the biological nervous system. How the human brain actually works is an elaborate and complex mystery
-                    so the actual models rely more on the observed brain performance characteristic. This includes exhibiting particular characteristics like learning
-                    from experience, deriving from previous data to the new one and extracting abstract but valuable data from input cointaining irrelevant data.
+                    So named because there is an input layer and an output layer, where each
+                    layer is fully connected to the other layer. There are no connections within
+                    the layers, just like in a complete bipartite graph. A perceptron is the
+                    simplest kind of neural network, and is also a feedforward neural network,
+                    meaning that there is no directed cycles. In this network, information only
+                    moves in one direction, straight from the input layer, through the hidden
+                    layer (only in MLP’s) and to the output layer. The perceptron works by the
+                    input layer sending a signal to the output player through the weighted
+                    connections. Each node on the output layer sums up the incoming signal
+                    values, and if a threshold is exceeded, the node fires an output signal.
                 </p>
-			    
-			    <h2>How do ANNs work.</h2>
+                
+                <div id="img">
+                    
+                    <img src="images/simplePerceptronDiagram.png"/>
+                                    
+                </div>
 			       
 			    <p>
-			        The esssential function of ANNs is to compute output nodes using its inputs and weights (synapses). However, such a network will need to be trained, analogously to
-			        human brain learning patterns and remembering relevant information. To achieve this, various training algorithms have been developed, mostly of two types; supervised and
-			        unsupervised learning. 
+			        The output signals from each individual node can by summed up by:
 			    </p>
+			    
+			    <div id="img">
+			    
+			        <img src="images/determinedOutputs.png"/>
+			    
+                </div>
+                
+                <p>
+                    In order to train the perceptron, the weighted connections between the input
+                    and output layers could be adjusted so the output would match the desired
+                    output. The training of the perceptron can be achieved by giving the input
+                    layer a set of predesigned values and checking the output to what was
+                    expected. If the output was different, the weighted connection could be
+                    altered so the output was closer to what was expected. The new weights for
+                    the connections were determined by an error correction formula given
+                    below.
+                </p>
+                
+                <div id="img">
+                
+                    <img src="images/errorCorrectionFormula.png"/>
+                
+                </div>
+                
+                <p>
+                    As can be seen, the new value for the connection is given by multiplying the
+                    difference between the actual output (x) and the target output (t) by a
+                    learning constant (c). If the input value (a) is a 1 then the connection value
+                    would be altered, otherwise if it was a 0, it has no bearing on the output and
+                    therefore wouldn’t be changed. This training of the perceptron would
+                    continue until no improvements could be made, meaning the network has
+                    converged. When the convergence point has been met, the perceptron has
+                    either learned from the training and can be used in general to produce its
+                    own correct results, or it has failed and is deemed no working.
+                </p>
+                
+                <p>
+                    Perceptron networks have limitation though. Firstly, the output value of the
+                    perceptron can only be either true or false, meaning that it can only say fordefinite whether the input is what it is, and not how close it is. Also, a
+                    perceptron can only recognize linearly separable patterns. This means that
+                    any input pattern can be separated into two distinct classes by drawing a
+                    single line. The most famous example of a perceptron’s inability to solve
+                    problems is that if the Boolean exclusive-or problem.
+                </p>
+                
+                <p>
+                    The linearly separable pattern problem which is the downfall of the single
+                    layer perceptron is somewhat solved by the introduction of back error
+                    propagation. This extends the single layer perceptron by implementing
+                    multiple layers of hidden networks, also know as multiple player
+                    perceptrons.
+                </p>
 		       			  
 		    </div>
 		    
