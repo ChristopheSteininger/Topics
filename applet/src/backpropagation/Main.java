@@ -1,6 +1,8 @@
 package backpropagation;
 
 import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -12,11 +14,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 @SuppressWarnings("serial")
 public class Main extends Applet {
     
+    private Network network;
+    private Trainer trainer;
+    private TrainerIO io = new PolarToCartesianIO();
+    
+    private JSpinner spnLayers = new JSpinner();
+    private JSpinner spnNeurons = new JSpinner();
+    private JSpinner spnRate = new JSpinner();
+    
+    private JButton btnReset = new JButton("Reset");
+    private JButton btnApply = new JButton("Apply");
+    
     public void init() {
+        
+        trainer = new Trainer(network, io);
         
         setSize(500, 500);
         try {
@@ -40,9 +57,9 @@ public class Main extends Applet {
         
         JPanel plMain = new JPanel();
         plMain.setLayout(new BoxLayout(plMain, BoxLayout.PAGE_AXIS));
-        plMain.add(createSetupPanel());
-        plMain.add(createGraphPanel());
-        plMain.add(createTestPanel());
+        plMain.add(createSetupPanel(), BorderLayout.PAGE_START);
+        plMain.add(createGraphPanel(), BorderLayout.LINE_START);
+        plMain.add(createTestPanel(), BorderLayout.PAGE_END);
         
         add(plMain);
     }
@@ -54,21 +71,28 @@ public class Main extends Applet {
         plSetup.setBorder(BorderFactory.createTitledBorder("Setup Network"));
         
         JLabel lblLayers = new JLabel("Number of layers:");
-        JSpinner spnLayers = new JSpinner();
-        
         JLabel lblNeurons = new JLabel("Number of neurons:");
-        JSpinner spnNeurons = new JSpinner();
-        
         JLabel lblRate = new JLabel("Learning rate:");
-        JSpinner spnRate = new JSpinner();
         
-        JButton btnApply = new JButton("Apply");
-        JButton btnReset = new JButton("Reset");
-        
+        btnApply.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent arg0) {
+                
+                int layers = (Integer) spnLayers.getValue();
+                int neurons = (Integer) spnNeurons.getValue();
+                int rate = (Integer) spnRate.getValue();
+                
+                network = new Network(io.getInputs(), io.getOutputs(),
+                        layers, neurons);
+                trainer.setLearningRate(rate);
+            }
+        });
         
         // Setup the group layout.
         GroupLayout layout = new GroupLayout(plSetup);
         plSetup.setLayout(layout);
+        plSetup.setBackground(new Color(255, 0, 0));
         
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
@@ -109,6 +133,7 @@ public class Main extends Applet {
         // Create the controls for the graph.
         JLabel lblIterations = new JLabel("Iterations:");
         JSpinner spnIterations = new JSpinner();
+        JPanel plGraph = new JPanel();
         JButton btnTrain = new JButton("Train");
         
         // Add the iteration controls a panel.
@@ -130,15 +155,18 @@ public class Main extends Applet {
         plTrain.add(Box.createHorizontalGlue());
         
         // Add the subpanels to the final panel and return.
-        JPanel plGraph = new JPanel();
+        JPanel plTrainArea = new JPanel();
         plGraph.setBorder(BorderFactory.createTitledBorder("Total Errors over Time"));
-        plGraph.setBorder(BorderFactory.createTitledBorder("Test Network"));
-        plGraph.setLayout(new BoxLayout(plGraph, BoxLayout.PAGE_AXIS));
         
-        plGraph.add(plIterations);
-        plGraph.add(plTrain);
+        plTrainArea.setBackground(new Color(0, 255, 0));
+        plTrainArea.setBorder(BorderFactory.createTitledBorder("Train Network"));
+        plTrainArea.setLayout(new BoxLayout(plTrainArea, BoxLayout.PAGE_AXIS));
         
-        return plGraph;
+        plTrainArea.add(plIterations);
+        plTrainArea.add(plGraph);
+        plTrainArea.add(plTrain);
+        
+        return plTrainArea;
     }
     
     private JPanel createTestPanel() {
@@ -151,13 +179,14 @@ public class Main extends Applet {
         JSpinner spnY = new JSpinner();
         
         JLabel lblR = new JLabel("r:");
-        JSpinner spnR = new JSpinner();
+        JLabel spnR = new JLabel("R");
         
         JLabel lblTheta = new JLabel("theta:");
-        JSpinner spnTheta = new JSpinner();
+        JLabel spnTheta = new JLabel("THETA");
         
         // Add the controls to the test panel and return.
         JPanel plTest = new JPanel();
+        plTest.setBackground(new Color(0, 0, 255));
         plTest.setBorder(BorderFactory.createTitledBorder("Test Network"));
         
         GroupLayout layout = new GroupLayout(plTest);

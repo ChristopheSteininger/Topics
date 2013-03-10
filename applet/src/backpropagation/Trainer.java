@@ -24,7 +24,7 @@ public class Trainer {
     }
 
     // Trains the network, and writes to the log file if specified.
-    public double[] Train(int iterations, /*BackgroundWorker worker,*/ boolean printData)
+    public double[] train(int iterations, /*BackgroundWorker worker,*/ boolean printData)
     {
         //StreamWriter writer = null;
         double totalErrorSum = 0;
@@ -45,17 +45,17 @@ public class Trainer {
         for (int i = 0; i < iterations; i++)
         {
             // Get the input and expected output from the IO.
-            inputs = io.GetValidInput();
-            expected = io.GetExpectedOutput(inputs);
+            inputs = io.getValidInput();
+            expected = io.getExpectedOutput(inputs);
 
             // Get the actual output of the network.
-            actual = network.GetOutput(inputs);
+            actual = network.getOutput(inputs);
 
             // Apply the back propagation algorithm.
-            TrainTestPass(inputs, expected, actual);
+            trainTestPass(inputs, expected, actual);
 
             // Calculate the total error as summation in quadrature.
-            allErrors[i] = GetTotalError(expected, actual);
+            allErrors[i] = getTotalError(expected, actual);
 
             // Report progress every 100 iterations to the worker.
             if (i % 100 == 0)
@@ -92,7 +92,7 @@ public class Trainer {
     }
 
     // Calculates the total error of the output given the expected result.
-    private double GetTotalError(double[] expected, double[] actual)
+    private double getTotalError(double[] expected, double[] actual)
     {
         //Debug.Assert(expected.Length == actual.Length,
         //    "Parameter lengths must be equal.");
@@ -107,7 +107,7 @@ public class Trainer {
     }
 
     // Applies an iteration of the back propagation algorithm to the network.
-    private void TrainTestPass(double[] inputs, double[] expected, double[] actual)
+    private void trainTestPass(double[] inputs, double[] expected, double[] actual)
     {
         //Debug.Assert(expected.Length == actual.Length,
         //    "Expected and actual output lengths must be equal.");
@@ -125,7 +125,7 @@ public class Trainer {
         double[] neuronOutputs = errors;
         for (int layer = network.getLayers().length - 1; layer >= 0; layer--)
         {
-            deltas[layer] = GetDeltaValues(weights, neuronOutputs);
+            deltas[layer] = hetDeltaValues(weights, neuronOutputs);
 
             weights = network.getLayers()[layer].getWeights();
             neuronOutputs = deltas[layer];
@@ -163,7 +163,7 @@ public class Trainer {
 
     // Calculates the delta values of a set of neurons using the synaptic weights
     // and the output of the neurons at the end of the synapses.
-    private double[] GetDeltaValues(double[][] weights, double[] neuronOutputs)
+    private double[] hetDeltaValues(double[][] weights, double[] neuronOutputs)
     {
         //Debug.Assert(weights.GetLength(1) == neuronOutputs.Length,
         //    "Number of output neurons in weights array not equal to number of outputs.");

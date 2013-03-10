@@ -37,7 +37,7 @@ class Network {
         this.inputCount = inputs;
         this.outputCount = outputs;
 
-        this.synOut = InitialiseSynArray(neurons, outputs, random);
+        this.synOut = initialiseSynArray(neurons, outputs, random);
         this.layers = new MedialLayer[layers];
 
         for (int i = 0; i < layers; i++)
@@ -49,21 +49,21 @@ class Network {
             }
 
             this.layers[i] = new MedialLayer();
-            this.layers[i].setWeights(InitialiseSynArray(layerInputs, neurons, random));
+            this.layers[i].setWeights(initialiseSynArray(layerInputs, neurons, random));
         }
     }
 
     // Calculates the output of the network with the given inputs.
     // Pre: The length of the input array matches the number of
     // input neurons.
-    public double[] GetOutput(double[] inputs)
+    public double[] getOutput(double[] inputs)
     {
         //Debug.Assert(inputs.Length == inputCount, "Incorrect number of inputs.");
 
         // Calculate the values of the medial neurons.
         for (int layer = 0; layer < layers.length; layer++)
         {
-            medout[layer] = layers[layer].GetOutput(inputs);
+            medout[layer] = layers[layer].getOutput(inputs);
             inputs = medout[layer];
         }
 
@@ -84,7 +84,7 @@ class Network {
 
     // Helper method to set the synaptic weights between two neurons to a small
     // random value: [0, 0.1).
-    private double[][] InitialiseSynArray(int a, int b, Random random)
+    private double[][] initialiseSynArray(int a, int b, Random random)
     {
         double[][] result = new double[a][b];
 

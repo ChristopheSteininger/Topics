@@ -12,8 +12,8 @@ interface TrainerIO
     int getMedialNeurons();
     int getLayers();
 
-    double[] GetExpectedOutput(double[] input);
-    double[] GetValidInput();
+    double[] getExpectedOutput(double[] input);
+    double[] getValidInput();
 
-    Network GetValidNetwork();
+    Network getValidNetwork();
 }
