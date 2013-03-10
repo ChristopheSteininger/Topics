@@ -61,18 +61,18 @@
                 <h2>ANN - Artificial Neural Networks</h2>
                                
                 <p>
-                     ANNs help to address problems whose solutions are complex and impractical to formulate explicitly. Their idea is analogous to the structure and behaviour of the biological nervous system. How the human brain actually works is an elaborate and complex mystery so the actual models rely more on the observed brain performance characteristic. This includes exhibiting particular characteristics like learning
- from experience, deriving from previous data to the new one and extracting abstract but valuable data from input containing irrelevant data.
- An important fact to note is that ANN generalises automatically as a result of its structure, not by implementing human reasoning in the form of logically designed programs. This is why, once trained, they have the ability to see through minor noise and distortion comparably to the human brain dealing with the “imperfections” of the world.
+                    ANNs help to address problems whose solutions are complex and impractical to formulate explicitly. Their idea is analogous to
+                    the structure and behaviour of the biological nervous system. How the human brain actually works is an elaborate and complex mystery
+                    so the actual models rely more on the observed brain performance characteristic. This includes exhibiting particular characteristics like learning
+                    from experience, deriving from previous data to the new one and extracting abstract but valuable data from input containing irrelevant data.
                 </p>
 			    
 			    <h2>How do ANNs work</h2>
 			       
 			    <p>
-			        There exist many paradigms for artificial neural networks, however most of them are based on a set of a large number of interconnected nodes that work together to compute output nodes, using the input and weights (synapses).
-Such a network will need to be trained so that application of a set of inputs produces the desired (or at least consistent) set of outputs. This process is analogous to
- human brain learning patterns and remembering relevant information. To achieve this, various training algorithms have been developed, mostly of two types; supervised and
- unsupervised learning. 
+			        The esssential function of ANNs is to compute output nodes using its inputs and weights (synapses). However, such a network will need to be trained, analogously to
+			        human brain learning patterns and remembering relevant information. To achieve this, various training algorithms have been developed, mostly of two types; supervised and
+			        unsupervised learning. 
 			    </p>
 
                 <h2>Possible Drawbacks</h2>
