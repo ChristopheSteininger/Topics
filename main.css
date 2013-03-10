@@ -19,12 +19,17 @@ h3 {
     font-size: 16px
 }
 
-pre {
-	font-size: 14px;
-}
-
 p {
 	margin-bottom: 1.5em;
+}
+
+pre {
+	font-size: 14px;
+	margin-bottom: 1.5em;
+}
+
+textarea {
+    resize: none;
 }
 
 #img {
