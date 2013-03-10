@@ -30,6 +30,9 @@ public class Main extends Applet {
     
     private JButton btnReset = new JButton("Reset");
     private JButton btnApply = new JButton("Apply");
+
+    private JSpinner spnIterations = new JSpinner();
+    private JButton btnTrain = new JButton("Train");
     
     public void init() {
         
@@ -79,9 +82,9 @@ public class Main extends Applet {
             @Override
             public void stateChanged(ChangeEvent arg0) {
                 
-                int layers = (Integer) spnLayers.getValue();
-                int neurons = (Integer) spnNeurons.getValue();
-                int rate = (Integer) spnRate.getValue();
+                int layers = (Integer)spnLayers.getValue();
+                int neurons = (Integer)spnNeurons.getValue();
+                int rate = (Integer)spnRate.getValue();
                 
                 network = new Network(io.getInputs(), io.getOutputs(),
                         layers, neurons);
@@ -132,9 +135,16 @@ public class Main extends Applet {
         
         // Create the controls for the graph.
         JLabel lblIterations = new JLabel("Iterations:");
-        JSpinner spnIterations = new JSpinner();
         JPanel plGraph = new JPanel();
-        JButton btnTrain = new JButton("Train");
+        
+        btnTrain.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent arg0) {
+                
+                btnTrainHandler();
+            }
+        });
         
         // Add the iteration controls a panel.
         JPanel plIterations = new JPanel();
@@ -222,5 +232,12 @@ public class Main extends Applet {
                         .addComponent(spnTheta)));
         
         return plTest;
+    }
+
+    private void btnTrainHandler() {
+
+        int iterations = (Integer)spnIterations.getValue();
+        
+        trainer.train(iterations, false);
     }
 }
