@@ -72,7 +72,7 @@ public class Main extends JApplet {
     private void createGUI(Container container) {
         
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
-        container.add(createSetupPanel());
+        container.add(new SetupPanel());
         container.add(createGraphPanel());
         container.add(createTestPanel());
     }

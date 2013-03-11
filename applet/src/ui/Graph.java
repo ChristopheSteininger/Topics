@@ -12,6 +12,7 @@ public class Graph extends JPanel {
     
     private List<Double> data = new LinkedList<Double>();
     
+    // Append new data to the graph.
     public void add(double[] newData) {
         
         for (double item : newData) {
@@ -20,14 +21,16 @@ public class Graph extends JPanel {
         }
     }
     
+    // Removes all data from the graph.
     public void clear() {
         
         data.clear();
     }
-
+    
+    // Redraws the graph width the current data.
     public void redraw() {
         
-        double[] normalizedData = getNormalizedData();
+        double[] normalizedData = getNormalisesData();
         
         Graphics graphics = getGraphics();
         
@@ -37,7 +40,9 @@ public class Graph extends JPanel {
         }
     }
     
-    private double[] getNormalizedData() {
+    // Normalises the data so that it can be displayed on the panel width
+    // and height.
+    private double[] getNormalisesData() {
         
         int averageSize = Math.max(data.size() / getWidth(), 1);
         double[] result = new double[data.size() / averageSize];
