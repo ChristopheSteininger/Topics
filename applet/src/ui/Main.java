@@ -109,6 +109,9 @@ public class Main extends JApplet {
         int neurons = plSetup.getNeurons();
         int rate = plSetup.getRate();
         
+        plGraph.getGraph().clear();
+        plGraph.getGraph().redraw();
+        
         network = new Network(io.getInputs(), io.getOutputs(),
                 neurons, layers);
         trainer.setLearningRate(rate / 10.0);

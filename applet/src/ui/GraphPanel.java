@@ -23,7 +23,7 @@ public class GraphPanel extends JPanel {
         
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(createIterations(maxSpinnerSizeX));
-        add(graph);
+        add(createGraphPanel());
         add(createTrainButton());
     }
     
@@ -52,6 +52,18 @@ public class GraphPanel extends JPanel {
         layout.setVerticalGroup(layout.createParallelGroup()
                 .addComponent(lblIterations)
                 .addComponent(spnIterations, preferredSize, spinnerSizeY, preferredSize));
+        
+        return result;
+    }
+    
+    // Create the graph area.
+    private JPanel createGraphPanel() {
+        
+        JPanel result = new JPanel();
+        
+        result.setBorder(BorderFactory.createTitledBorder("Total Error against Iterations"));
+        result.setLayout(new BoxLayout(result, BoxLayout.PAGE_AXIS));
+        result.add(graph);
         
         return result;
     }
