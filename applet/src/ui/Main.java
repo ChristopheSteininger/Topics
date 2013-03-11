@@ -1,51 +1,63 @@
-package backpropagation;
+package ui;
 
-import java.applet.Applet;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+
+import backpropagation.Network;
+import backpropagation.PolarToCartesianIO;
+import backpropagation.Trainer;
+import backpropagation.TrainerIO;
 
 @SuppressWarnings("serial")
-public class Main extends Applet {
+public class Main extends JApplet {
     
+    // The network and trainers to use.
     private Network network;
     private Trainer trainer;
     private TrainerIO io = new PolarToCartesianIO();
     
+    // The spinner controls to adjust properties of the network.
     private JSpinner spnLayers = new JSpinner();
     private JSpinner spnNeurons = new JSpinner();
     private JSpinner spnRate = new JSpinner();
     
+    // The buttons to apply or reset the properties of the network.
     private JButton btnReset = new JButton("Reset");
     private JButton btnApply = new JButton("Apply");
 
+    // The controls used to train the network.
     private JSpinner spnIterations = new JSpinner();
     private JButton btnTrain = new JButton("Train");
     
+    private Graph plGraph = new Graph();
+    
     public void init() {
         
+        // Setup the network and trainer.
+        network = io.getValidNetwork();
         trainer = new Trainer(network, io);
         
-        setSize(500, 500);
+        // Setup the GUI.
         try {
-         
+            
             SwingUtilities.invokeAndWait(new Runnable() {
                 
                 public void run() {
                     
-                    createGUI();
+                    createGUI(getContentPane());
                 }
             });
         }
@@ -56,15 +68,13 @@ public class Main extends Applet {
         }
     }
     
-    private void createGUI() {
+    // Creates the GUI in the given container.
+    private void createGUI(Container container) {
         
-        JPanel plMain = new JPanel();
-        plMain.setLayout(new BoxLayout(plMain, BoxLayout.PAGE_AXIS));
-        plMain.add(createSetupPanel(), BorderLayout.PAGE_START);
-        plMain.add(createGraphPanel(), BorderLayout.LINE_START);
-        plMain.add(createTestPanel(), BorderLayout.PAGE_END);
-        
-        add(plMain);
+        container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
+        container.add(createSetupPanel());
+        container.add(createGraphPanel());
+        container.add(createTestPanel());
     }
     
     private JPanel createSetupPanel() {
@@ -77,25 +87,20 @@ public class Main extends Applet {
         JLabel lblNeurons = new JLabel("Number of neurons:");
         JLabel lblRate = new JLabel("Learning rate:");
         
-        btnApply.addChangeListener(new ChangeListener() {
+        // Attach a click handler to the apply button.
+        btnApply.addActionListener(new ActionListener() {
 
             @Override
-            public void stateChanged(ChangeEvent arg0) {
+            public void actionPerformed(ActionEvent arg0) {
                 
-                int layers = (Integer)spnLayers.getValue();
-                int neurons = (Integer)spnNeurons.getValue();
-                int rate = (Integer)spnRate.getValue();
-                
-                network = new Network(io.getInputs(), io.getOutputs(),
-                        layers, neurons);
-                trainer.setLearningRate(rate);
+                btnApplyHandler();
             }
         });
         
         // Setup the group layout.
         GroupLayout layout = new GroupLayout(plSetup);
         plSetup.setLayout(layout);
-        plSetup.setBackground(new Color(255, 0, 0));
+        //plSetup.setBackground(new Color(255, 0, 0));
         
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
@@ -135,13 +140,11 @@ public class Main extends Applet {
         
         // Create the controls for the graph.
         JLabel lblIterations = new JLabel("Iterations:");
-        JPanel plGraph = new JPanel();
         
-        btnTrain.addChangeListener(new ChangeListener() {
-
+        btnTrain.addActionListener(new ActionListener() {
+            
             @Override
-            public void stateChanged(ChangeEvent arg0) {
-                
+            public void actionPerformed(ActionEvent arg0) {
                 btnTrainHandler();
             }
         });
@@ -168,7 +171,7 @@ public class Main extends Applet {
         JPanel plTrainArea = new JPanel();
         plGraph.setBorder(BorderFactory.createTitledBorder("Total Errors over Time"));
         
-        plTrainArea.setBackground(new Color(0, 255, 0));
+        //plTrainArea.setBackground(new Color(0, 255, 0));
         plTrainArea.setBorder(BorderFactory.createTitledBorder("Train Network"));
         plTrainArea.setLayout(new BoxLayout(plTrainArea, BoxLayout.PAGE_AXIS));
         
@@ -196,7 +199,7 @@ public class Main extends Applet {
         
         // Add the controls to the test panel and return.
         JPanel plTest = new JPanel();
-        plTest.setBackground(new Color(0, 0, 255));
+        //plTest.setBackground(new Color(0, 0, 255));
         plTest.setBorder(BorderFactory.createTitledBorder("Test Network"));
         
         GroupLayout layout = new GroupLayout(plTest);
@@ -238,6 +241,22 @@ public class Main extends Applet {
 
         int iterations = (Integer)spnIterations.getValue();
         
-        trainer.train(iterations, false);
+        double[] errors = trainer.train(iterations);
+        
+        plGraph.clear();
+        plGraph.add(errors);
+        
+        plGraph.redraw();
+    }
+
+    private void btnApplyHandler() {
+        
+        int layers = (Integer)spnLayers.getValue();
+        int neurons = (Integer)spnNeurons.getValue();
+        int rate = (Integer)spnRate.getValue();
+        
+        network = new Network(io.getInputs(), io.getOutputs(),
+                neurons, layers);
+        trainer.setLearningRate(rate / 10.0);
     }
 }

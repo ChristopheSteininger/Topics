@@ -4,7 +4,7 @@ import java.util.Random;
 
 // Provides the inputs and expected outputs to train a network
 // in converting polar coordinates the Cartesian equivalent.
-class PolarToCartesianIO implements TrainerIO {
+public class PolarToCartesianIO implements TrainerIO {
     
     // Gets the suggested learning rate for this behaviour.
     public double getLearningRate() {

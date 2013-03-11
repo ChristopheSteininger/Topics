@@ -3,8 +3,8 @@ package backpropagation;
 // An interface to define the input and output functions which
 // all trainer IOs must provide and the number of inputs and output to
 // the network.
-interface TrainerIO
-{
+public interface TrainerIO {
+    
     double getLearningRate();
 
     int getInputs();

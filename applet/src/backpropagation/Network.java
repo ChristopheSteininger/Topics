@@ -6,7 +6,7 @@ import java.util.Random;
 // containing a variable number of neurons, as well as a variable number
 // of input and output neurons. The network can also calculate the output
 // given its inputs.
-class Network {
+public class Network {
     
     // The medial layers in the network.
     private MedialLayer[] layers;
