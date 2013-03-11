@@ -5,12 +5,18 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Graph extends JPanel {
     
     private List<Double> data = new LinkedList<Double>();
+    
+    public Graph() {
+        
+        setBorder(BorderFactory.createTitledBorder("Total Error against Iterations"));
+    }
     
     // Append new data to the graph.
     public void add(double[] newData) {
