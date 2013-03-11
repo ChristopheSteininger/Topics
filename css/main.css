@@ -65,7 +65,6 @@ textarea {
 	width: 100%;
 	padding: 0px;
 	height: 100px;
-	margin: 0px 0px 0px 0px;
  	background: black url(../images/neuralNetwork.jpg) center no-repeat;
  	content: '';
 }
@@ -81,7 +80,6 @@ textarea {
     display: inline;
     color: #333;
     margin: 10px;
-    padding: 0px;
     width: 195px;
     float: left;
 }
@@ -102,7 +100,6 @@ textarea {
     position: relative;
     color: #333;
     margin: 10px 10px 10px 0px;
-    padding: 0px;
     width: 195px;
     float: right;
 }
@@ -112,7 +109,6 @@ textarea {
     clear: both;
     color: #333;
     background: #ABBEBE;
-    margin: 0px 0px 10px 0px;
     padding: 10px;
 }
 
@@ -128,22 +124,15 @@ textarea {
 }
 
 .nav, .nav ul { 
-	margin: 0;
-	padding: 0;
 	top: -15px;
 	left: 175px;
-}
-
-.nav {
-    font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
     position: relative;
 }
 
 .nav li {
     border-left: 1px solid #000;
     float: left;
-    margin: 0;
-    padding: 0;
     position: relative;
 }
 
