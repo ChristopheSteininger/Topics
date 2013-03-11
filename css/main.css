@@ -123,10 +123,11 @@ textarea {
     color: #000;
 }
 
-.nav, .nav ul { 
-	top: -15px;
-	left: 175px;
+.nav { 
+	top: -12px;
+	left: 137px;
 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18;
     position: relative;
 }
 
