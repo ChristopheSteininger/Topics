@@ -59,7 +59,7 @@ public class PolarToCartesianIO implements TrainerIO {
     public double[] getValidInput()
     {
         double r = random.nextDouble();
-        double theta = random.nextDouble() * 0.25 * Math.PI;
+        double theta = random.nextDouble() * 0.5 * Math.PI;
 
         return new double[] { r, theta };
     }

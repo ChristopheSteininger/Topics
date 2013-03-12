@@ -7,15 +7,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.LayoutStyle;
+import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("serial")
 public class TestPanel extends JPanel {
     
-    private JSpinner spnX = new JSpinner();
-    private JSpinner spnY = new JSpinner();
+    private JSpinner spnR = new JSpinner();
+    private JSpinner spnTheta = new JSpinner();
     
-    private JLabel lblR = new JLabel("r:");
-    private JLabel lblTheta = new JLabel("theta:");
+    private JLabel lblX = new JLabel("x:");
+    private JLabel lblY = new JLabel("y:");
+    
+    private JLabel lblEX = new JLabel("x:");
+    private JLabel lblEY = new JLabel("y:");
 
     public TestPanel(int maxSpinnerSizeX) {
         
@@ -30,61 +34,87 @@ public class TestPanel extends JPanel {
 
         JPanel result = new JPanel();
         
-        JLabel lblX = new JLabel("x:");
-        JLabel lblY = new JLabel("y:");
+        JLabel lblR = new JLabel("r:");
+        JLabel lblTheta = new JLabel("theta (degrees):");
+        
+        JLabel lblActual = new JLabel("Actual:");
+        JLabel lblExpected = new JLabel("Expected:");
+        
+        spnR.setModel(new SpinnerNumberModel(0.5, 0.0, 1.0, 0.05));
+        spnTheta.setModel(new SpinnerNumberModel(45.0, 0.0, 90.0, 0.5));
         
         GroupLayout layout = new GroupLayout(result);
         result.setLayout(layout);
         
         int preferredSize = GroupLayout.PREFERRED_SIZE;
-        int spinnerSizeY = spnX.getPreferredSize().height;
-        int minSizeX = spnX.getMinimumSize().width;
+        int spinnerSizeY = spnR.getPreferredSize().height;
+        int minSizeX = spnR.getMinimumSize().width;
         
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
         
         layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup()
-                        .addComponent(lblX)
-                        .addComponent(lblY))
-                .addGroup(layout.createParallelGroup()
-                        .addComponent(spnX, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
-                        .addComponent(spnY, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX))
-                .addGroup(layout.createParallelGroup()
                         .addComponent(lblR)
                         .addComponent(lblTheta))
+                .addGroup(layout.createParallelGroup()
+                        .addComponent(spnR, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
+                        .addComponent(spnTheta, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX))
+                .addGroup(layout.createParallelGroup()
+                        .addComponent(lblActual)
+                        .addComponent(lblExpected))
+                .addGroup(layout.createParallelGroup()
+                        .addComponent(lblX)
+                        .addComponent(lblEX))
+                .addGroup(layout.createParallelGroup()
+                        .addComponent(lblY)
+                        .addComponent(lblEY))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
         
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup()
+                        .addComponent(lblR)
+                        .addComponent(spnR, preferredSize, spinnerSizeY, preferredSize)
+                        .addComponent(lblActual)
                         .addComponent(lblX)
-                        .addComponent(spnX, preferredSize, spinnerSizeY, preferredSize)
-                        .addComponent(lblR))
+                        .addComponent(lblY))
                 .addGroup(layout.createParallelGroup()
-                        .addComponent(lblY)
-                        .addComponent(spnY, preferredSize, spinnerSizeY, preferredSize)
-                        .addComponent(lblTheta)));
+                        .addComponent(lblTheta)
+                        .addComponent(spnTheta, preferredSize, spinnerSizeY, preferredSize)
+                        .addComponent(lblExpected)
+                        .addComponent(lblEX)
+                        .addComponent(lblEY)));
         
         return result;
     }
     
-    public JSpinner getXSpinner() {
+    public JSpinner getRSpinner() {
         
-        return spnX;
+        return spnR;
     }
     
-    public JSpinner getYSpinner() {
+    public JSpinner getThetaSpinner() {
         
-        return spnY;
+        return spnTheta;
     }
     
-    public void setRLabel(Double value) {
+    public void setLabels(Double x, Double y) {
         
-        lblR.setText("r: " + value.toString());
-    }
-    
-    public void setThetaLabel(Double theta) {
+        x = (double)Math.round(x * 1000) / 1000.0;
+        y = (double)Math.round(y * 1000) / 1000.0;
         
-        lblTheta.setText("theta: " + theta.toString());
+        Double r = (Double)spnR.getValue();
+        Double theta = (Double)spnTheta.getValue() * Math.PI / 180;
+        
+        Double eX = r * Math.cos(theta);
+        Double eY = r * Math.sin(theta);
+        
+        eX = (double)Math.round(eX * 1000) / 1000.0;
+        eY = (double)Math.round(eY * 1000) / 1000.0;
+
+        lblX.setText("x = " + x.toString());
+        lblY.setText("y = " + y.toString());
+        lblEX.setText("x = " + eX.toString());
+        lblEY.setText("y = " + eY.toString());
     }
 }

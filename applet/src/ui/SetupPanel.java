@@ -111,9 +111,9 @@ public class SetupPanel extends JPanel {
         return (Integer)spnNeurons.getValue();
     }
     
-    public int getRate() {
+    public double getRate() {
         
-        return (Integer)spnRate.getValue();
+        return (Double)spnRate.getValue();
     }
     
     public JButton getApplyButton() {

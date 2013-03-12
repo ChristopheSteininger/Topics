@@ -94,7 +94,7 @@ public class Main extends JApplet {
             }
         });
         
-        plTest.getXSpinner().addChangeListener(new ChangeListener() {
+        plTest.getRSpinner().addChangeListener(new ChangeListener() {
 
             @Override
             public void stateChanged(ChangeEvent arg0) {
@@ -103,7 +103,7 @@ public class Main extends JApplet {
             }
         });
         
-        plTest.getYSpinner().addChangeListener(new ChangeListener() {
+        plTest.getThetaSpinner().addChangeListener(new ChangeListener() {
 
             @Override
             public void stateChanged(ChangeEvent arg0) {
@@ -129,7 +129,7 @@ public class Main extends JApplet {
         
         int layers = plSetup.getLayers();
         int neurons = plSetup.getNeurons();
-        int rate = plSetup.getRate();
+        double rate = plSetup.getRate();
         
         plGraph.getGraph().clear();
         plGraph.getGraph().redraw();
@@ -141,12 +141,11 @@ public class Main extends JApplet {
 
     private void spnTestHandler() {
         
-        double x = (Double)plTest.getXSpinner().getValue();
-        double y = (Double)plTest.getYSpinner().getValue();
+        double r = (Double)plTest.getRSpinner().getValue();
+        double theta = (Double)plTest.getThetaSpinner().getValue() * Math.PI / 180;
         
-        double[] outputs = network.getOutput(new double[] { x, y });
+        double[] outputs = network.getOutput(new double[] { r, theta });
         
-        plTest.setRLabel(outputs[0]);
-        plTest.setThetaLabel(outputs[1]);
+        plTest.setLabels(outputs[0], outputs[1]);
     }
 }
