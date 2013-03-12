@@ -94,6 +94,15 @@ public class Main extends JApplet {
             }
         });
         
+        plGraph.getResetButton().addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                
+                btnResetHandler();
+            }
+        });
+        
         plTest.getRSpinner().addChangeListener(new ChangeListener() {
 
             @Override
@@ -120,9 +129,14 @@ public class Main extends JApplet {
         double[] errors = trainer.train(iterations);
         
         plGraph.getGraph().clear();
-        plGraph.getGraph().add(errors);
+        plGraph.getGraph().setData(errors);
         
         plGraph.getGraph().redraw();
+    }
+
+    private void btnResetHandler() {
+        
+        network.reset();
     }
 
     private void btnApplyHandler() {

@@ -29,6 +29,7 @@ public class Network {
     // Creates a new feed forward network with the given number of inputs,
     // outputs and medial neurons in the network.
     public Network(int inputs, int outputs, int neurons, int layers) {
+        
         Random random = new Random();
 
         this.medout = new double[layers][];
@@ -50,6 +51,25 @@ public class Network {
 
             this.layers[i] = new MedialLayer();
             this.layers[i].setWeights(initialiseSynArray(layerInputs, neurons, random));
+        }
+    }
+
+    // Resets the weights of the network.
+    public void reset() {
+        
+        Random random = new Random();
+        
+        synOut = initialiseSynArray(neuronCount, outputCount, random);
+
+        for (int i = 0; i < layers.length; i++)
+        {
+            int layerInputs = neuronCount;
+            if (i == 0)
+            {
+                layerInputs = inputCount;
+            }
+            
+            layers[i].setWeights(initialiseSynArray(layerInputs, neuronCount, random));
         }
     }
 

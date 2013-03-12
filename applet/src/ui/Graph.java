@@ -2,37 +2,38 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Graph extends JPanel {
     
-    private List<Double> data = new LinkedList<Double>();
+    private double[] data;
     
     private double currentMaxValue;
     
-    // Append new data to the graph.
-    public void add(double[] newData) {
+    public void setData(double[] data) {
         
-        for (double item : newData) {
-            
-            data.add(item);
-        }
+        this.data = data;
     }
     
     // Removes all data from the graph.
     public void clear() {
         
-        data.clear();
+        data = null;
     }
     
     // Redraws the graph width the current data.
     public void redraw() {
         
+        Graphics graphics = getGraphics();
+        paintComponent(graphics);
+        
+        if (data == null) {
+            
+            return;
+        }
+            
         final int xAxisSize = 40;
         final int yAxisSize = 60;
         final int yAxisLines = 10;
@@ -41,9 +42,6 @@ public class Graph extends JPanel {
         final int graphHeight = getHeight() - xAxisSize;
         
         double[] normalisedData = getNormalisedData(graphWidth, graphHeight);
-        
-        Graphics graphics = getGraphics();
-        paintComponent(graphics);
         
         graphics.setColor(new Color(120, 120, 120));
         
@@ -62,7 +60,7 @@ public class Graph extends JPanel {
         for (int i = 0; i <= xAxisLines; i++) {
             
             int xPos = graphWidth * i / xAxisLines + yAxisSize - 1;
-            Double label = (double)(data.size() * i / xAxisLines) / 1000;
+            Double label = (double)(data.length * i / xAxisLines) / 1000;
             
             graphics.drawLine(xPos, 0, xPos, graphHeight + 5);
             graphics.drawString(label.toString() + "k", xPos, getHeight() - 5);
@@ -82,19 +80,18 @@ public class Graph extends JPanel {
     // and height.
     private double[] getNormalisedData(int width, int height) {
         
-        int averageSize = Math.max(data.size() / width, 1);
-        double[] result = new double[data.size() / averageSize];
+        int averageSize = Math.max(data.length / width, 1);
+        double[] result = new double[data.length / averageSize];
         
         currentMaxValue = Double.NEGATIVE_INFINITY;
         
         // Average the data such that it fits on the x axis.
-        Iterator<Double> iterator = data.iterator();
         for (int i = 0; i < result.length; i++) {
         
             double sum = 0;
             for (int j = 0; j < averageSize; j++) {
                 
-                double current = iterator.next();
+                double current = data[i * averageSize + j];
                 sum += current;
             }
             

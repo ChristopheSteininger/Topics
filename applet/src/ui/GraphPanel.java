@@ -14,6 +14,7 @@ public class GraphPanel extends JPanel {
     
     private JSpinner spnIterations = new JSpinner();
     private JButton btnTrain = new JButton("Train");
+    private JButton btnReset = new JButton("Reset Weights");
     
     private Graph graph = new Graph();
     
@@ -24,7 +25,7 @@ public class GraphPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(createIterations(maxSpinnerSizeX));
         add(createGraphPanel());
-        add(createTrainButton());
+        add(createTrainResetButton());
     }
     
     // Create the iterations label and spinner.
@@ -68,8 +69,8 @@ public class GraphPanel extends JPanel {
         return result;
     }
     
-    // Create the train button.
-    private JPanel createTrainButton() {
+    // Create the button area
+    private JPanel createTrainResetButton() {
 
         JPanel result = new JPanel();
         
@@ -81,10 +82,12 @@ public class GraphPanel extends JPanel {
         
         layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addComponent(btnTrain)
+                .addComponent(btnReset)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
         
         layout.setVerticalGroup(layout.createParallelGroup()
-                .addComponent(btnTrain));
+                .addComponent(btnTrain)
+                .addComponent(btnReset));
         
         return result;
     }
@@ -102,5 +105,10 @@ public class GraphPanel extends JPanel {
     public JButton getTrainButton() {
         
         return btnTrain;
+    }
+    
+    public JButton getResetButton() {
+        
+        return btnReset;
     }
 }
