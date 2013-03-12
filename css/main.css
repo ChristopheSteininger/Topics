@@ -127,6 +127,7 @@ textarea {
 	padding: 0;
 	top: -15px;
 	left: 175px;
+	list-style: none;
 }
 
 .nav {
