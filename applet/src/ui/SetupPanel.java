@@ -106,14 +106,29 @@ public class SetupPanel extends JPanel {
         return (Integer)spnLayers.getValue();
     }
     
+    public void setLayers(int layers) {
+        
+        spnLayers.setValue(layers);
+    }
+    
     public int getNeurons() {
         
         return (Integer)spnNeurons.getValue();
     }
     
+    public void setNeurons(int neurons) {
+        
+        spnNeurons.setValue(neurons);
+    }
+    
     public double getRate() {
         
         return (Double)spnRate.getValue();
+    }
+    
+    public void setRate(double rate) {
+        
+        spnRate.setValue(rate);
     }
     
     public JButton getApplyButton() {

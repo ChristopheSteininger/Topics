@@ -84,6 +84,15 @@ public class Main extends JApplet {
             }
         });
         
+        plSetup.getCancelButton().addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                
+                btnCancelHandler();
+            }
+        });
+        
         // Add train button handler.
         plGraph.getTrainButton().addActionListener(new ActionListener() {
             
@@ -122,23 +131,6 @@ public class Main extends JApplet {
         });
     }
 
-    private void btnTrainHandler() {
-
-        int iterations = plGraph.getIterations();
-        
-        double[] errors = trainer.train(iterations);
-        
-        plGraph.getGraph().clear();
-        plGraph.getGraph().setData(errors);
-        
-        plGraph.getGraph().redraw();
-    }
-
-    private void btnResetHandler() {
-        
-        network.reset();
-    }
-
     private void btnApplyHandler() {
         
         int layers = plSetup.getLayers();
@@ -150,7 +142,38 @@ public class Main extends JApplet {
         
         network = new Network(io.getInputs(), io.getOutputs(),
                 neurons, layers);
+        trainer = new Trainer(network, io);
         trainer.setLearningRate(rate);
+    }
+
+    private void btnCancelHandler() {
+        
+        plSetup.setLayers(network.getLayers().length);
+        plSetup.setNeurons(network.getMedialNeurons());
+        plSetup.setRate(trainer.getLearningRate());
+    }
+
+    private void btnTrainHandler() {
+
+        plGraph.getTrainButton().setEnabled(false);
+        plGraph.getTrainButton().repaint();
+        
+        int iterations = plGraph.getIterations();
+        
+        double[] errors = trainer.train(iterations);
+        
+        plGraph.getGraph().setData(errors);
+        plGraph.getGraph().redraw();
+        
+        plGraph.getTrainButton().setEnabled(true);
+    }
+
+    private void btnResetHandler() {
+        
+        network.reset();
+        
+        plGraph.getGraph().clear();
+        plGraph.getGraph().redraw();
     }
 
     private void spnTestHandler() {
