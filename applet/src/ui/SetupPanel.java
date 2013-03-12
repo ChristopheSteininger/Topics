@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.LayoutStyle;
+import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("serial")
 public class SetupPanel extends JPanel {
@@ -19,24 +20,28 @@ public class SetupPanel extends JPanel {
     private JButton btnCancel = new JButton("Cancel");
     private JButton btnApply = new JButton("Apply");
     
-    public SetupPanel(int maxSpinnerSizeX) {
+    public SetupPanel(int maxSpinnerSizeX, int layers, int neurons, double rate) {
 
         setBorder(BorderFactory.createTitledBorder("Setup Network"));
         
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        add(createSpinners(maxSpinnerSizeX));
+        add(createSpinners(maxSpinnerSizeX, layers, neurons, rate));
         add(createButtons());
     }
     
     // Create the labels and spinners to get the layers, neurons and
     // learning rate.
-    private JPanel createSpinners(int maxSpinnerSizeX) {
+    private JPanel createSpinners(int maxSpinnerSizeX, int layers, int neurons, double rate) {
         
         JPanel result = new JPanel();
         
         JLabel lblLayers = new JLabel("Number of hidden layers:");
         JLabel lblNeurons = new JLabel("Neurons per hidden layer:");
         JLabel lblRate = new JLabel("Learning rate:");
+        
+        spnLayers.setModel(new SpinnerNumberModel(layers, 0, 10, 1));
+        spnNeurons.setModel(new SpinnerNumberModel(neurons, 0, 200, 3));
+        spnRate.setModel(new SpinnerNumberModel(rate, 0.0, 10.0, 0.01));
         
         GroupLayout layout = new GroupLayout(result);
         result.setLayout(layout);

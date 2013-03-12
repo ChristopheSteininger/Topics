@@ -1,6 +1,6 @@
 package backpropagation;
 
-class MedialLayer {
+public class MedialLayer {
     
     // The weights between the inputs of the layer and the neurons.
     private double[][] weights;

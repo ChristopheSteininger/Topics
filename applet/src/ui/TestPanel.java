@@ -67,4 +67,24 @@ public class TestPanel extends JPanel {
         
         return result;
     }
+    
+    public JSpinner getXSpinner() {
+        
+        return spnX;
+    }
+    
+    public JSpinner getYSpinner() {
+        
+        return spnY;
+    }
+    
+    public void setRLabel(Double value) {
+        
+        lblR.setText("r: " + value.toString());
+    }
+    
+    public void setThetaLabel(Double theta) {
+        
+        lblTheta.setText("theta: " + theta.toString());
+    }
 }

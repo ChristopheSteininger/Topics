@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JApplet;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import backpropagation.Network;
 import backpropagation.PolarToCartesianIO;
@@ -21,7 +23,7 @@ public class Main extends JApplet {
     private Trainer trainer;
     private TrainerIO io = new PolarToCartesianIO();
     
-    private final int maxSpinnerSizeX = 60;
+    private final int maxSpinnerSizeX = 80;
     
     // The panels of the UI.
     private SetupPanel plSetup;
@@ -57,7 +59,8 @@ public class Main extends JApplet {
     // Creates the GUI in the given container.
     private void createGUI(Container container) {
         
-        plSetup = new SetupPanel(maxSpinnerSizeX);
+        plSetup = new SetupPanel(maxSpinnerSizeX, network.getLayers().length,
+                network.getMedialNeurons(), trainer.getLearningRate());
         plGraph = new GraphPanel(maxSpinnerSizeX);
         plTest = new TestPanel(maxSpinnerSizeX);
         
@@ -86,7 +89,26 @@ public class Main extends JApplet {
             
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                
                 btnTrainHandler();
+            }
+        });
+        
+        plTest.getXSpinner().addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent arg0) {
+                
+                spnTestHandler();
+            }
+        });
+        
+        plTest.getYSpinner().addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent arg0) {
+                
+                spnTestHandler();
             }
         });
     }
@@ -114,6 +136,17 @@ public class Main extends JApplet {
         
         network = new Network(io.getInputs(), io.getOutputs(),
                 neurons, layers);
-        trainer.setLearningRate(rate / 10.0);
+        trainer.setLearningRate(rate);
+    }
+
+    private void spnTestHandler() {
+        
+        double x = (Double)plTest.getXSpinner().getValue();
+        double y = (Double)plTest.getYSpinner().getValue();
+        
+        double[] outputs = network.getOutput(new double[] { x, y });
+        
+        plTest.setRLabel(outputs[0]);
+        plTest.setThetaLabel(outputs[1]);
     }
 }
