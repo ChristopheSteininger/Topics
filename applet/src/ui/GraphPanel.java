@@ -33,7 +33,7 @@ public class GraphPanel extends JPanel {
         
         JPanel result = new JPanel();
         
-        JLabel lblIterations = new JLabel("Iterations");
+        JLabel lblIterations = new JLabel("Iterations:");
         
         GroupLayout layout = new GroupLayout(result);
         result.setLayout(layout);

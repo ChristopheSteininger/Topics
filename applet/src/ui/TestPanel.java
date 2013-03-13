@@ -15,11 +15,11 @@ public class TestPanel extends JPanel {
     private JSpinner spnR = new JSpinner();
     private JSpinner spnTheta = new JSpinner();
     
-    private JLabel lblX = new JLabel("x:");
-    private JLabel lblY = new JLabel("y:");
+    private JLabel lblX = new JLabel();
+    private JLabel lblY = new JLabel();
     
-    private JLabel lblEX = new JLabel("x:");
-    private JLabel lblEY = new JLabel("y:");
+    private JLabel lblEX = new JLabel();
+    private JLabel lblEY = new JLabel();
 
     public TestPanel(int maxSpinnerSizeX) {
         

@@ -9,7 +9,7 @@ public class PolarToCartesianIO implements TrainerIO {
     // Gets the suggested learning rate for this behaviour.
     public double getLearningRate() {
         
-        return 0.5;
+        return 0.1;
     }
     
     // Gets the number of inputs for this behaviour.

@@ -154,9 +154,6 @@ public class Main extends JApplet {
     }
 
     private void btnTrainHandler() {
-
-        plGraph.getTrainButton().setEnabled(false);
-        plGraph.getTrainButton().repaint();
         
         int iterations = plGraph.getIterations();
         
@@ -164,8 +161,6 @@ public class Main extends JApplet {
         
         plGraph.getGraph().setData(errors);
         plGraph.getGraph().redraw();
-        
-        plGraph.getTrainButton().setEnabled(true);
     }
 
     private void btnResetHandler() {
