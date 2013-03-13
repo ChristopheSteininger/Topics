@@ -38,7 +38,7 @@ public class SetupPanel extends JPanel {
         JLabel lblNeurons = new JLabel("Neurons per hidden layer:");
         
         spnLayers.setModel(new SpinnerNumberModel(layers, 0, 10, 1));
-        spnNeurons.setModel(new SpinnerNumberModel(neurons, 0, 200, 3));
+        spnNeurons.setModel(new SpinnerNumberModel(neurons, 0, 200, 1));
         
         GroupLayout layout = new GroupLayout(result);
         result.setLayout(layout);

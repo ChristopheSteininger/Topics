@@ -22,18 +22,18 @@ public class GraphPanel extends JPanel {
     
     private Graph graph = new Graph();
     
-    public GraphPanel(int maxSpinnerSizeX, double rate) {
+    public GraphPanel(int maxSpinnerSizeX, double rate, double momentum) {
         
         setBorder(BorderFactory.createTitledBorder("Train Network"));
         
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        add(createIterations(maxSpinnerSizeX, rate));
+        add(createIterations(maxSpinnerSizeX, rate, momentum));
         add(createGraphPanel());
         add(createTrainResetButton());
     }
     
     // Create the iterations label and spinner.
-    private JPanel createIterations(int maxSpinnerSizeX, double rate) {
+    private JPanel createIterations(int maxSpinnerSizeX, double rate, double momentum) {
         
         JPanel result = new JPanel();
         
@@ -42,6 +42,7 @@ public class GraphPanel extends JPanel {
         JLabel lblMomentum = new JLabel("Momentum");
         
         spnRate.setModel(new SpinnerNumberModel(rate, 0.0, 10.0, 0.01));
+        spnMomentum.setModel(new SpinnerNumberModel(momentum, 0.0, 1.0, 0.05));
         
         GroupLayout layout = new GroupLayout(result);
         result.setLayout(layout);

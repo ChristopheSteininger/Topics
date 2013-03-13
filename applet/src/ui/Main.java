@@ -3,8 +3,6 @@ package ui;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JApplet;
@@ -61,9 +59,9 @@ public class Main extends JApplet {
     // Creates the GUI in the given container.
     private void createGUI(Container container) {
         
-        plSetup = new SetupPanel(maxSpinnerSizeX, network.getLayers().length,
+        plSetup = new SetupPanel(maxSpinnerSizeX, network.getLayerCount(),
                 network.getMedialNeurons());
-        plGraph = new GraphPanel(maxSpinnerSizeX, trainer.getLearningRate());
+        plGraph = new GraphPanel(maxSpinnerSizeX, trainer.getLearningRate(), 0.2);
         plTest = new TestPanel(maxSpinnerSizeX);
         
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
@@ -148,7 +146,7 @@ public class Main extends JApplet {
 
     private void btnCancelHandler() {
         
-        plSetup.setLayers(network.getLayers().length);
+        plSetup.setLayers(network.getLayerCount());
         plSetup.setNeurons(network.getMedialNeurons());
         //plSetup.setRate(trainer.getLearningRate());
     }
@@ -157,9 +155,11 @@ public class Main extends JApplet {
         
         int iterations = plGraph.getIterations();
         double rate = plGraph.getRate();
+        double momentum = plGraph.getMomentum();
 
         trainer.setLearningRate(rate);
-        double[] errors = trainer.train(iterations);
+        trainer.setMomentum(momentum);
+        double[] errors = trainer.train(iterations, false);
         
         plGraph.getGraph().setData(errors);
         plGraph.getGraph().redraw();

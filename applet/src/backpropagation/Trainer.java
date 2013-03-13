@@ -10,6 +10,9 @@ public class Trainer {
     
     // The learning rate used when training.
     private double learningRate;
+    
+    // The momentum factor used when training.
+    private double momentum;
 
     // Creates a new instance of trainer with the network to train and
     // the input/output to train for.
@@ -17,11 +20,16 @@ public class Trainer {
         
         this.network = network;
         this.io = io;
+        
         learningRate = io.getLearningRate();
+        momentum = io.getMomentumFactor();
     }
 
     // Trains the network, and writes to the log file if specified.
-    public double[] train(int iterations) {
+    public double[] train(int iterations, boolean useMomentum) {
+        
+        System.out.println("Training with " + iterations + " iterations and "
+                + "rate of " + learningRate);
         
         double[] allErrors = new double[iterations];
         double[] inputs, expected, actual;
@@ -37,7 +45,7 @@ public class Trainer {
             actual = network.getOutput(inputs);
 
             // Apply the back propagation algorithm.
-            trainTestPass(inputs, expected, actual);
+            trainTestPass(inputs, expected, actual, useMomentum);
 
             // Calculate the total error as summation in quadrature.
             allErrors[i] = getTotalError(expected, actual);
@@ -48,9 +56,6 @@ public class Trainer {
 
     // Calculates the total error of the output given the expected result.
     private double getTotalError(double[] expected, double[] actual) {
-        
-        assert expected.length == actual.length :
-            "Parameter lengths must be equal.";
 
         double sum = 0;
         for (int i = 0; i < expected.length; i++) {
@@ -62,10 +67,8 @@ public class Trainer {
     }
 
     // Applies an iteration of the back propagation algorithm to the network.
-    private void trainTestPass(double[] inputs, double[] expected, double[] actual) {
-        
-        assert expected.length == actual.length :
-            "Expected and actual output lengths must be equal.";
+    private void trainTestPass(double[] inputs, double[] expected,
+            double[] actual, boolean useMomentum) {
 
         // Calculate the error.
         double[] errors = new double[actual.length];
@@ -75,28 +78,36 @@ public class Trainer {
         }
 
         // Calculate the delta values for the medial layer.
-        double[][] deltas = new double[network.getLayers().length][];
-        double[][] weights = network.getSynOut();
+        double[][] deltas = new double[network.getLayerCount()][];
+        double[][] weights = network.getOutputLayer().getWeights();
         double[] neuronOutputs = errors;
-        for (int layer = network.getLayers().length - 1; layer >= 0; layer--) {
+        for (int layer = network.getLayerCount() - 1; layer >= 0; layer--) {
             
             deltas[layer] = getDeltaValues(weights, neuronOutputs);
 
-            weights = network.getLayers()[layer].getWeights();
+            weights = network.getLayer(layer).getWeights();
             neuronOutputs = deltas[layer];
         }
+        
+        double updateFactor = useMomentum ? 1 : learningRate;
+        double momentumFactor = useMomentum ? momentum : 0;
 
         // Adjust weights.
         double[] currentInputs = inputs;
-        for (int layer = 0; layer < network.getLayers().length; layer++) {
+        for (int layer = 0; layer < network.getLayerCount(); layer++) {
             
             for (int input = 0; input < currentInputs.length; input++) {
                 
                 for (int neuron = 0; neuron < network.getMedialNeurons(); neuron++) {
                     
-                    network.getLayers()[layer].getWeights()[input][neuron] += learningRate
-                        * currentInputs[input] * deltas[layer][neuron]
-                        * dLogistic(network.getMedout()[layer][neuron]);
+                    double weightUpdate = currentInputs[input]
+                            * deltas[layer][neuron]
+                            * dLogistic(network.getMedout()[layer][neuron]);
+                    
+                    double adjustment = updateFactor * weightUpdate
+                            + momentumFactor * network.getLayer(layer).getOldAdjustment(input, neuron);
+                    
+                    network.getLayer(layer).adjustWeight(input, neuron, adjustment);
                 }
             }
 
@@ -108,8 +119,12 @@ public class Trainer {
             
             for (int output = 0; output < network.getOutputs(); output++) {
                 
-                network.getSynOut()[neuron][output] += learningRate * currentInputs[neuron]
-                    * errors[output];
+                double weightUpdate = currentInputs[neuron] * errors[output];
+                
+                double adjustment = updateFactor * weightUpdate + momentumFactor
+                        * network.getOutputLayer().getOldAdjustment(neuron, output);
+                
+                network.getOutputLayer().adjustWeight(neuron, output, adjustment);
             }
         }
 
@@ -155,5 +170,10 @@ public class Trainer {
     public void setLearningRate(double learningRate) {
         
         this.learningRate = learningRate;
+    }
+
+    public void setMomentum(double momentum) {
+        
+        this.momentum = momentum;
     }
 }
