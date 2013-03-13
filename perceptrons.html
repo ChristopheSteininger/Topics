@@ -98,26 +98,53 @@
                     definite whether the input is what it is, and not how close it is. Also, a
                     perceptron can only recognize linearly separable patterns. This means that
                     any input pattern can be separated into two distinct classes by drawing a
-                    single line. The most famous example of a perceptron's inability to solve
-                    problems is that if the Boolean exclusive-or problem.
+                    single line, as demonstrated below for AND/OR.
                 </p>
-                
+
+                <div id="img">
+
+                  <img src="images/linearlySeparableProblem1.png"/>
+
+                </div>
+
+                <p>                    
+                    A problem arises when this same method is attempted on XOR -
+                    it isn't linearly separable:
+                </p>
+
+                <div id="img">
+
+                  <img src="images/linearlySeparableProblem2.png"/>
+
+                </div>
+
+
                 <p>
-                    The linearly separable pattern problem which is the downfall of the single
-                    layer perceptron is somewhat solved by adding medial neurons inbetween the
-                    input layer and output layer, meaning it is now a multi-layer perceptron.
-                </p>
+                    A way of fixing this is to get it to be seperable on a 3-D
+                    plane - on the diagram above, you can imagine the 1s being
+                    moved up and the 0s being moved down so a line can be drawn
+                    inbetween. This is effectively done when using multi layer
+                    perceptrons.
                 
                 <h1>Multi Layer Perceptrons</h1>
                 
                 <p>
                     Multi-layer perceptrons are very similar to single layer perceptrons, with the exception of some hidden layers
                     between the input and output layers. These work in the same way, with each neuron in the previous layer being
-                    connected to every neuron in the next layer. The advantage of the extra neurons means it can be used to learn
-                    more complex patterns, since each layer can find patterns in the previous layer, which will itself have found
-                    patterns in the layer before it and so on, meaning that the network has more 'depth'. However, adding too many
-                    layers for a simple problem can make a network learn much too slowly, or even make it start to see patterns that
-                    are irrelavent.
+                    connected to every neuron in the next layer.
+                </p>
+
+                <div id="img">
+
+                    <img src="images/multiLayerPerceptron.png"/>
+
+                </div>
+
+                <p>
+                    The advantage of the extra neurons means it can be used to learn more complex patterns, since each layer can
+                    find patterns in the previous layer, which will itself have found patterns in the layer before it and so on,
+                    meaning that the network has more 'depth'. However, adding too many layers for a simple problem can make a
+                    network learn much too slowly, or even make it start to see patterns that are irrelavent.
                 </p>
                 
                 <h1>References</h1>
@@ -125,6 +152,11 @@
                 <div id="ref">
 
                     <ul>
+
+                        <li>
+                           <a href="http://www.csulb.edu/~cwallis/artificialn/History.htm">
+                             http://www.csulb.edu/~cwallis/artificialn/History.htm</a>
+                        </li>                  
                         
                         <li>
                             <a href="http://ei.cs.vt.edu/~history/Perceptrons.Estebon.html">
