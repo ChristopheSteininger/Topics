@@ -69,6 +69,7 @@ textarea {
 	width: 100%;
 	height: 100px;
  	background: black url(../images/neuralNetwork.jpg) center no-repeat;
+  display: block;
  	content: '';
 }
 
