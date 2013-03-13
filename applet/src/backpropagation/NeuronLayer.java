@@ -8,6 +8,8 @@ public class NeuronLayer {
     private double[][] weights;
     
     private double[][] oldAdjustments;
+    
+    private double[] lastOutput;
 
     // Sets each synaptic weight between to a small random value in the range (-1, 1).
     public NeuronLayer(int inputs, int outputs, Random random) {
@@ -27,24 +29,24 @@ public class NeuronLayer {
     // Calculates the output of the layer with the given inputs.
     public double[] getOutput(double[] inputs, boolean squash) {
         
-        double[] outputs = new double[weights[0].length];
+        lastOutput = new double[weights[0].length];
 
-        for (int neuron = 0; neuron < outputs.length; neuron++) {
+        for (int neuron = 0; neuron < lastOutput.length; neuron++) {
             
-            outputs[neuron] = 0;
+            lastOutput[neuron] = 0;
 
             for (int input = 0; input < inputs.length; input++) {
                 
-                outputs[neuron] += inputs[input] * weights[input][neuron];
+                lastOutput[neuron] += inputs[input] * weights[input][neuron];
             }
 
             if (squash) {
                 
-                outputs[neuron] = logistic(outputs[neuron]);
+                lastOutput[neuron] = logistic(lastOutput[neuron]);
             }
         }
-
-        return outputs;
+        
+        return lastOutput;
     }
     
     // Returns the value of a sigmoid function, specifically the logistic function
@@ -59,7 +61,12 @@ public class NeuronLayer {
         return weights;
     }
     
-    public double getOldAdjustment(int input, int neuron) {
+    public double[] getLastOutputs() {
+        
+        return lastOutput;
+    }
+    
+    public double getLastAdjustment(int input, int neuron) {
         
         return oldAdjustments[input][neuron];
     }

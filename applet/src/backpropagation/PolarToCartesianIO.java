@@ -17,7 +17,7 @@ public class PolarToCartesianIO implements TrainerIO {
     @Override
     public double getMomentumFactor() {
         
-        return 0.2;
+        return 0.02;
     }
     
     // Gets the number of inputs for this behaviour.

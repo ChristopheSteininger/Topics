@@ -11,9 +11,6 @@ public class Network {
     // The medial layers in the network.
     private NeuronLayer[] layers;
     
-    // The output of each medial neuron.
-    private double[][] medout;
-    
     // The weights leading to the output layer.
     private NeuronLayer outputLayer;
     
@@ -34,7 +31,6 @@ public class Network {
         inputCount = inputs;
         outputCount = outputs;
 
-        medout = new double[layers][];
         this.layers = new NeuronLayer[layers];
         
         reset();
@@ -66,8 +62,7 @@ public class Network {
         
         for (int layer = 0; layer < layers.length; layer++)
         {
-            medout[layer] = layers[layer].getOutput(inputs, true);
-            inputs = medout[layer];
+            inputs = layers[layer].getOutput(inputs, true);
         }
         
         return outputLayer.getOutput(inputs, false);
@@ -86,11 +81,6 @@ public class Network {
     public NeuronLayer getOutputLayer() {
         
         return outputLayer;
-    }
-    
-    public double[][] getMedout() { 
-        
-        return medout;
     }
     
     public int getMedialNeurons() {

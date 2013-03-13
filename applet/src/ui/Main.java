@@ -23,7 +23,7 @@ public class Main extends JApplet {
     private Trainer trainer;
     private TrainerIO io = new PolarToCartesianIO();
     
-    private final int maxSpinnerSizeX = 80;
+    private final int maxSpinnerSizeX = 100;
     
     // The panels of the UI.
     private SetupPanel plSetup;
@@ -37,6 +37,7 @@ public class Main extends JApplet {
         trainer = new Trainer(network, io);
         
         setSize(670, 800);
+        setMinimumSize(getSize());
         
         // Setup the GUI.
         try {
@@ -61,7 +62,8 @@ public class Main extends JApplet {
         
         plSetup = new SetupPanel(maxSpinnerSizeX, network.getLayerCount(),
                 network.getMedialNeurons());
-        plGraph = new GraphPanel(maxSpinnerSizeX, trainer.getLearningRate(), 0.2);
+        plGraph = new GraphPanel(maxSpinnerSizeX, io.getLearningRate(),
+                trainer.getMomentum());
         plTest = new TestPanel(maxSpinnerSizeX);
         
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
@@ -148,7 +150,6 @@ public class Main extends JApplet {
         
         plSetup.setLayers(network.getLayerCount());
         plSetup.setNeurons(network.getMedialNeurons());
-        //plSetup.setRate(trainer.getLearningRate());
     }
 
     private void btnTrainHandler() {
@@ -159,7 +160,7 @@ public class Main extends JApplet {
 
         trainer.setLearningRate(rate);
         trainer.setMomentum(momentum);
-        double[] errors = trainer.train(iterations, false);
+        double[] errors = trainer.train(iterations);
         
         plGraph.getGraph().setData(errors);
         plGraph.getGraph().redraw();

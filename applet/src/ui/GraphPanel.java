@@ -41,15 +41,15 @@ public class GraphPanel extends JPanel {
         JLabel lblRate = new JLabel("Learning rate:");
         JLabel lblMomentum = new JLabel("Momentum");
         
+        spnIterations.setModel(new SpinnerNumberModel(50000, 1, 10000000, 1000));
         spnRate.setModel(new SpinnerNumberModel(rate, 0.0, 10.0, 0.01));
-        spnMomentum.setModel(new SpinnerNumberModel(momentum, 0.0, 1.0, 0.05));
+        spnMomentum.setModel(new SpinnerNumberModel(momentum, 0.0, 1.0, 0.001));
         
         GroupLayout layout = new GroupLayout(result);
         result.setLayout(layout);
         
         int preferredSize = GroupLayout.PREFERRED_SIZE;
         int spinnerSizeY = spnIterations.getPreferredSize().height;
-        int minSizeX = spnIterations.getMinimumSize().width;
         
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
@@ -60,9 +60,9 @@ public class GraphPanel extends JPanel {
                     .addComponent(lblRate)
                     .addComponent(lblMomentum))
                 .addGroup(layout.createParallelGroup()
-                    .addComponent(spnIterations, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
-                    .addComponent(spnRate, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
-                    .addComponent(spnMomentum, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX))
+                    .addComponent(spnIterations, maxSpinnerSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
+                    .addComponent(spnRate, maxSpinnerSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
+                    .addComponent(spnMomentum, maxSpinnerSizeX, maxSpinnerSizeX, maxSpinnerSizeX))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
         
         layout.setVerticalGroup(layout.createSequentialGroup()
