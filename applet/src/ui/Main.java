@@ -62,8 +62,8 @@ public class Main extends JApplet {
     private void createGUI(Container container) {
         
         plSetup = new SetupPanel(maxSpinnerSizeX, network.getLayers().length,
-                network.getMedialNeurons(), trainer.getLearningRate());
-        plGraph = new GraphPanel(maxSpinnerSizeX);
+                network.getMedialNeurons());
+        plGraph = new GraphPanel(maxSpinnerSizeX, trainer.getLearningRate());
         plTest = new TestPanel(maxSpinnerSizeX);
         
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
@@ -75,15 +75,6 @@ public class Main extends JApplet {
     }
     
     private void attachHandlers() {
-        
-        getContentPane().addComponentListener(new ComponentAdapter() {
-            
-            @Override
-            public void componentResized(ComponentEvent e) {
-                
-                plGraph.getGraph().redraw();
-            }
-        });
         
         // Add apply button handler.
         plSetup.getApplyButton().addActionListener(new ActionListener() {
@@ -146,7 +137,6 @@ public class Main extends JApplet {
         
         int layers = plSetup.getLayers();
         int neurons = plSetup.getNeurons();
-        double rate = plSetup.getRate();
         
         plGraph.getGraph().clear();
         plGraph.getGraph().redraw();
@@ -154,20 +144,21 @@ public class Main extends JApplet {
         network = new Network(io.getInputs(), io.getOutputs(),
                 neurons, layers);
         trainer = new Trainer(network, io);
-        trainer.setLearningRate(rate);
     }
 
     private void btnCancelHandler() {
         
         plSetup.setLayers(network.getLayers().length);
         plSetup.setNeurons(network.getMedialNeurons());
-        plSetup.setRate(trainer.getLearningRate());
+        //plSetup.setRate(trainer.getLearningRate());
     }
 
     private void btnTrainHandler() {
         
         int iterations = plGraph.getIterations();
-        
+        double rate = plGraph.getRate();
+
+        trainer.setLearningRate(rate);
         double[] errors = trainer.train(iterations);
         
         plGraph.getGraph().setData(errors);
