@@ -100,8 +100,10 @@ public class TestPanel extends JPanel {
     
     public void setLabels(Double x, Double y) {
         
-        x = (double)Math.round(x * 1000) / 1000.0;
-        y = (double)Math.round(y * 1000) / 1000.0;
+        final double roundingFactor = 1000000.0;
+        
+        x = (double)Math.round(x * roundingFactor) / roundingFactor;
+        y = (double)Math.round(y * roundingFactor) / roundingFactor;
         
         Double r = (Double)spnR.getValue();
         Double theta = (Double)spnTheta.getValue() * Math.PI / 180;
@@ -109,8 +111,8 @@ public class TestPanel extends JPanel {
         Double eX = r * Math.cos(theta);
         Double eY = r * Math.sin(theta);
         
-        eX = (double)Math.round(eX * 1000) / 1000.0;
-        eY = (double)Math.round(eY * 1000) / 1000.0;
+        eX = (double)Math.round(eX * roundingFactor) / roundingFactor;
+        eY = (double)Math.round(eY * roundingFactor) / roundingFactor;
 
         lblX.setText("x = " + x.toString());
         lblY.setText("y = " + y.toString());

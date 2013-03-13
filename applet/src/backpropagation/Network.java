@@ -9,13 +9,10 @@ import java.util.Random;
 public class Network {
     
     // The medial layers in the network.
-    private MedialLayer[] layers;
-    
-    // The output of each medial neuron.
-    private double[][] medout;
+    private NeuronLayer[] layers;
     
     // The weights leading to the output layer.
-    private double[][] synOut;
+    private NeuronLayer outputLayer;
     
     // The number of neurons in the medial layer.
     private final int neuronCount;
@@ -30,28 +27,13 @@ public class Network {
     // outputs and medial neurons in the network.
     public Network(int inputs, int outputs, int neurons, int layers) {
         
-        Random random = new Random();
+        neuronCount = neurons;
+        inputCount = inputs;
+        outputCount = outputs;
 
-        this.medout = new double[layers][];
-
-        this.neuronCount = neurons;
-        this.inputCount = inputs;
-        this.outputCount = outputs;
-
-        this.synOut = initialiseSynArray(neurons, outputs, random);
-        this.layers = new MedialLayer[layers];
-
-        for (int i = 0; i < layers; i++)
-        {
-            int layerInputs = neurons;
-            if (i == 0)
-            {
-                layerInputs = inputs;
-            }
-
-            this.layers[i] = new MedialLayer();
-            this.layers[i].setWeights(initialiseSynArray(layerInputs, neurons, random));
-        }
+        this.layers = new NeuronLayer[layers];
+        
+        reset();
     }
 
     // Resets the weights of the network.
@@ -59,8 +41,6 @@ public class Network {
         
         Random random = new Random();
         
-        synOut = initialiseSynArray(neuronCount, outputCount, random);
-
         for (int i = 0; i < layers.length; i++)
         {
             int layerInputs = neuronCount;
@@ -69,74 +49,38 @@ public class Network {
                 layerInputs = inputCount;
             }
             
-            layers[i].setWeights(initialiseSynArray(layerInputs, neuronCount, random));
+            layers[i] = new NeuronLayer(layerInputs, neuronCount, random);
         }
+        
+        outputLayer = new NeuronLayer(neuronCount, outputCount, random);
     }
 
     // Calculates the output of the network with the given inputs.
     // Pre: The length of the input array matches the number of
     // input neurons.
-    public double[] getOutput(double[] inputs)
-    {
-        //Debug.Assert(inputs.Length == inputCount, "Incorrect number of inputs.");
-
-        // Calculate the values of the medial neurons.
+    public double[] getOutput(double[] inputs) {
+        
         for (int layer = 0; layer < layers.length; layer++)
         {
-            medout[layer] = layers[layer].getOutput(inputs);
-            inputs = medout[layer];
+            inputs = layers[layer].getOutput(inputs, true);
         }
-
-        // Calculate the values of the output neurons.
-        double[] outputs = new double[outputCount];
-        for (int output = 0; output < outputCount; output++)
-        {
-            outputs[output] = 0;
-
-            for (int neuron = 0; neuron < neuronCount; neuron++)
-            {
-                outputs[output] += inputs[neuron] * synOut[neuron][output];
-            }
-        }
-
-        return outputs;
-    }
-
-    // Helper method to set the synaptic weights between two neurons to a small
-    // random value: [0, 0.1).
-    private double[][] initialiseSynArray(int a, int b, Random random)
-    {
-        double[][] result = new double[a][b];
-
-        for (int y = 0; y < b; y++)
-        {
-            for (int x = 0; x < a; x++)
-            {
-                result[x][y] = random.nextDouble() - 0.5;
-            }
-        }
-
-        return result;
+        
+        return outputLayer.getOutput(inputs, false);
     }
     
-    public MedialLayer[] getLayers() {
+    public NeuronLayer getLayer(int layer) {
         
-        return layers;
+        return layers[layer];
     }
     
-    public double[][] getMedout() { 
+    public int getLayerCount() {
         
-        return medout;
+        return layers.length;
     }
     
-    public double[][] getSynOut() {
+    public NeuronLayer getOutputLayer() {
         
-        return synOut;
-    }
-    
-    public void setSynOut(double[][] synOut) {
-        
-        this.synOut = synOut;
+        return outputLayer;
     }
     
     public int getMedialNeurons() {

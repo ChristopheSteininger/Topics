@@ -6,6 +6,7 @@ package backpropagation;
 public interface TrainerIO {
     
     double getLearningRate();
+    double getMomentumFactor();
 
     int getInputs();
     int getOutputs();

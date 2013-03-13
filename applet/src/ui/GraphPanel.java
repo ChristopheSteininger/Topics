@@ -8,51 +8,73 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.LayoutStyle;
+import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("serial")
 public class GraphPanel extends JPanel {
     
     private JSpinner spnIterations = new JSpinner();
+    private JSpinner spnRate = new JSpinner();
+    private JSpinner spnMomentum = new JSpinner();
+    
     private JButton btnTrain = new JButton("Train");
     private JButton btnReset = new JButton("Reset Weights");
     
     private Graph graph = new Graph();
     
-    public GraphPanel(int maxSpinnerSizeX) {
+    public GraphPanel(int maxSpinnerSizeX, double rate, double momentum) {
         
         setBorder(BorderFactory.createTitledBorder("Train Network"));
         
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        add(createIterations(maxSpinnerSizeX));
+        add(createIterations(maxSpinnerSizeX, rate, momentum));
         add(createGraphPanel());
         add(createTrainResetButton());
     }
     
     // Create the iterations label and spinner.
-    private JPanel createIterations(int maxSpinnerSizeX) {
+    private JPanel createIterations(int maxSpinnerSizeX, double rate, double momentum) {
         
         JPanel result = new JPanel();
         
         JLabel lblIterations = new JLabel("Iterations:");
+        JLabel lblRate = new JLabel("Learning rate:");
+        JLabel lblMomentum = new JLabel("Momentum");
+        
+        spnIterations.setModel(new SpinnerNumberModel(50000, 1, 10000000, 1000));
+        spnRate.setModel(new SpinnerNumberModel(rate, 0.0, 10.0, 0.01));
+        spnMomentum.setModel(new SpinnerNumberModel(momentum, 0.0, 1.0, 0.001));
         
         GroupLayout layout = new GroupLayout(result);
         result.setLayout(layout);
         
         int preferredSize = GroupLayout.PREFERRED_SIZE;
         int spinnerSizeY = spnIterations.getPreferredSize().height;
-        int minSizeX = spnIterations.getMinimumSize().width;
         
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
         
         layout.setHorizontalGroup(layout.createSequentialGroup()
-                .addComponent(lblIterations)
-                .addComponent(spnIterations, minSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
+                .addGroup(layout.createParallelGroup()
+                    .addComponent(lblIterations)
+                    .addComponent(lblRate)
+                    .addComponent(lblMomentum))
+                .addGroup(layout.createParallelGroup()
+                    .addComponent(spnIterations, maxSpinnerSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
+                    .addComponent(spnRate, maxSpinnerSizeX, maxSpinnerSizeX, maxSpinnerSizeX)
+                    .addComponent(spnMomentum, maxSpinnerSizeX, maxSpinnerSizeX, maxSpinnerSizeX))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
         
-        layout.setVerticalGroup(layout.createParallelGroup()
-                .addComponent(lblIterations)
-                .addComponent(spnIterations, preferredSize, spinnerSizeY, preferredSize));
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup()
+                    .addComponent(lblIterations)
+                    .addComponent(spnIterations, preferredSize, spinnerSizeY, preferredSize))
+                .addGroup(layout.createParallelGroup()
+                    .addComponent(lblRate)
+                    .addComponent(spnRate, preferredSize, spinnerSizeY, preferredSize))
+                .addGroup(layout.createParallelGroup()
+                    .addComponent(lblMomentum)
+                    .addComponent(spnMomentum, preferredSize, spinnerSizeY, preferredSize)));
         
         return result;
     }
@@ -95,6 +117,26 @@ public class GraphPanel extends JPanel {
     public int getIterations() {
         
         return (Integer)spnIterations.getValue();
+    }
+    
+    public double getRate() {
+        
+        return (Double)spnRate.getValue();
+    }
+    
+    public void setRate(double rate) {
+        
+        spnRate.setValue(rate);
+    }
+    
+    public double getMomentum() {
+        
+        return (Double)spnMomentum.getValue();
+    }
+    
+    public void setMomentum(double rate) {
+        
+        spnMomentum.setValue(rate);
     }
     
     public Graph getGraph() {

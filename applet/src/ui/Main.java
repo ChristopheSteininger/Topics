@@ -3,8 +3,6 @@ package ui;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JApplet;
@@ -25,7 +23,7 @@ public class Main extends JApplet {
     private Trainer trainer;
     private TrainerIO io = new PolarToCartesianIO();
     
-    private final int maxSpinnerSizeX = 80;
+    private final int maxSpinnerSizeX = 100;
     
     // The panels of the UI.
     private SetupPanel plSetup;
@@ -39,6 +37,7 @@ public class Main extends JApplet {
         trainer = new Trainer(network, io);
         
         setSize(670, 800);
+        setMinimumSize(getSize());
         
         // Setup the GUI.
         try {
@@ -61,9 +60,10 @@ public class Main extends JApplet {
     // Creates the GUI in the given container.
     private void createGUI(Container container) {
         
-        plSetup = new SetupPanel(maxSpinnerSizeX, network.getLayers().length,
-                network.getMedialNeurons(), trainer.getLearningRate());
-        plGraph = new GraphPanel(maxSpinnerSizeX);
+        plSetup = new SetupPanel(maxSpinnerSizeX, network.getLayerCount(),
+                network.getMedialNeurons());
+        plGraph = new GraphPanel(maxSpinnerSizeX, io.getLearningRate(),
+                trainer.getMomentum());
         plTest = new TestPanel(maxSpinnerSizeX);
         
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
@@ -75,15 +75,6 @@ public class Main extends JApplet {
     }
     
     private void attachHandlers() {
-        
-        getContentPane().addComponentListener(new ComponentAdapter() {
-            
-            @Override
-            public void componentResized(ComponentEvent e) {
-                
-                plGraph.getGraph().redraw();
-            }
-        });
         
         // Add apply button handler.
         plSetup.getApplyButton().addActionListener(new ActionListener() {
@@ -146,7 +137,6 @@ public class Main extends JApplet {
         
         int layers = plSetup.getLayers();
         int neurons = plSetup.getNeurons();
-        double rate = plSetup.getRate();
         
         plGraph.getGraph().clear();
         plGraph.getGraph().redraw();
@@ -154,20 +144,22 @@ public class Main extends JApplet {
         network = new Network(io.getInputs(), io.getOutputs(),
                 neurons, layers);
         trainer = new Trainer(network, io);
-        trainer.setLearningRate(rate);
     }
 
     private void btnCancelHandler() {
         
-        plSetup.setLayers(network.getLayers().length);
+        plSetup.setLayers(network.getLayerCount());
         plSetup.setNeurons(network.getMedialNeurons());
-        plSetup.setRate(trainer.getLearningRate());
     }
 
     private void btnTrainHandler() {
         
         int iterations = plGraph.getIterations();
-        
+        double rate = plGraph.getRate();
+        double momentum = plGraph.getMomentum();
+
+        trainer.setLearningRate(rate);
+        trainer.setMomentum(momentum);
         double[] errors = trainer.train(iterations);
         
         plGraph.getGraph().setData(errors);
