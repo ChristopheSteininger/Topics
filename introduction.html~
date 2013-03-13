@@ -28,11 +28,11 @@
                 </li>
 
                 <li>
-                    <a href="backpropagation.html">Backpropagation</a>
+                    <a href="multiperceptron.html">Multilayer Perceptron</a>
                 </li>
 
                 <li>
-                    <a href="demo.html">Applet</a>
+                    <a href="backpropagation.html">Backpropagation</a>
                 </li>
                 
             </ul>
@@ -76,10 +76,8 @@
 Such a network will need to be trained so that application of a set of inputs produces the desired (or at least consistent) set of outputs. This process is analogous to
  human brain learning patterns and remembering relevant information. To achieve this, various training algorithms have been developed, mostly of two types; supervised and
  unsupervised learning. </p>
-<h3>Supervised learning</h3>
 <p>
-Supervised learning requires the pairing of each input with the corresponding target output. Together these are called a training pair. Usually a network is trained over a plentiful of such training pairs. An input is applied, the output of the network is calculated using its current settings (i.e. the weights) and the difference (error) between the target output and the calculated result is computed. The error is then fed back to the network and used to adjust the network such that the error is minimised. The algorithm is applied consecutively to each training pair so that at the end of training the error for the entire training set is at an acceptably low level.</p>
-<h3>Unsupervised learning</h3>
+Supervised learning requires the pairing of each input with the corresponding target output. Together these are called a training pair. Usually a network is trained over a plentiful of such training pairs. An input is applied, the output of the network is calculated using its current settings (i.e. the weights) and the difference (error) between the target output and the calculated result is computed. The error is then fed back to the network and used to adjust the network such that the error is minimised. The algorithm is applied consequently to each training pair so that at the end of training the error for the entire training set is at an acceptably low level.</p>
 <p>
 Unsupervised learning is a more complex model of learning when compared to the supervised learning, although it is essentially the corresponding model of learning in biological systems. It is the answer to criticism of  supervised learning as a biologically irrational model. It is difficult and presumably incorrect to reason of the brain as a mechanism that learns everything through comparing desired and actual outputs, trying to minimise the error between the two. If this were to happen in real life, where would the desired outputs come from? Unsupervised learning requires no target output, and hence, no comparisons are carried out to adjust the network. The training set consists solely of inputs. The algorithm modifies network weights to produce outputs that are consistent with each other. This mean that a two sufficiently similar inputs will result in the same pattern of outputs. The training process, therefore, relies mostly on extracting statistical properties of the training set, grouping similar inputs together. The difficulty for an unsupervised algorithm is, of course, to identify reasonably the number of such groups that can be created from the inputs and the choice of non-biased boundaries between them. The task of making universally accepted classification of data can be often difficult even for people.
 			    </p>

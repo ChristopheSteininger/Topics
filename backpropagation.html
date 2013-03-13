@@ -33,11 +33,11 @@
                 </li>
 
                 <li>
-                    <a href="multiperceptron.html">Multilayer Perceptron</a>
+                    <a href="backpropagation.html">Backpropagation</a>
                 </li>
 
                 <li>
-                    <a href="backpropagation.html">Backpropagation</a>
+                    <a href="demo.html">Applet</a>
                 </li>
                 
             </ul>
@@ -54,14 +54,23 @@
                 <h1>Introduction</h1>
                 
                 <p>
-                    In large neural networks simulating more complex functions, finding the weights of each synapse is too complex
-                    to be done manually, so instead the back propagation algorithm is commonly used  to find weights which will
-                    approximate the desired behaviour. Back propagation works by calculating the difference between each output of
+                    In large neural networks simulating more complex behaviours, finding the weights of each synapse is too complex
+                    to be done manually, so instead the back propagation algorithm is commonly used to find weights which will
+                    approximate the desired behaviour.
+                </p>
+                
+                <p>
+                    Back propagation works by calculating the difference between each output of
                     the network and the expected output for the inputs to the network, then propagating this error backwards
                     through the network to adjust the weights and reduce the error in the future. By repeating this train and test
                     loop over a large range of valid inputs, the neural network will learn the expected behaviour and the errors
-                    will decrease. Back propagation can be run for any number of valid inputs, however the network will eventually
-                    reach a state where back propagation can no longer reduce the average error. In some cases, the inputs used to
+                    will decrease.
+                </p>
+                
+                <p>
+                    Back propagation can be run for any number of valid inputs, however the network will eventually
+                    reach a state where back propagation can no longer reduce the average error as shown below. In some cases,
+                    the inputs used to
                     train the network can be picked randomly and the expected output can be found without manual intervention
                     since they are simple enough to calculate, e.g. a network trained to add numbers or apply the sin function.
                     Other cases require the training examples to be pre-computed, e.g. a network that is supposed to recognise
@@ -70,16 +79,16 @@
 
                <div id="img">
                
-                    <img src="images/graphs/I=50k R=0.1 N=40 L=1.png" />
+                    <img src="images/graphs/I=50k R=0.1 N=15 L=3.png" />
                     
                </div>
 
                 <p>
                     This graph shows how the average total error of a network decreases as back propagation teaches the network
-                    using 50,000 examples. The network trained is a two input and two output network with 40 neurons in a hidden
-                    layer used to convert Cartesian coordinates to polar coordinates.
+                    using 50,000 examples. The network trained is a two input and two output network with 15 neurons in each of
+                    the 3 hidden layers used to convert Cartesian coordinates to polar coordinates.
                 </p>
-
+                
                 <h1>The Algorithm</h1>
 
                 <h2>Initialisation</h2>
@@ -101,25 +110,61 @@
                 <h3>Error Propagation</h3>
                 
                 <p>
-                    The first step is to propagate the errors backwards by computing the delta value, or error value of each
-                    neuron. First, calculate the delta values for each neuron in the medial layer by multiplying the weight of
-                    each synapse leaving the neuron by the error of the output which the synapse connects to. All weight-error
-                    products of a neuron are then summed to give the final delta value of that neuron.
+                    The first step of the training is to propagate the errors backwards by computing the delta value, or error
+                    value of each neuron in the hidden layer. To help describe the process, the following network with two hidden
+                    layers of three neurons will be used as an example:
                 </p>
-                
-                [D1]
+
+               <div id="img">
+               
+                    <img src="images/Network.png" />
+                    
+               </div>
                 
                 <p>
-                    The network contains another layer, so this procedure is repeated again for the input layer, using the
-                    previously calculated delta value of a neuron in the medial layer in place of the error values.
+                    The delta values are calculated layer by layer, from the last hidden layer to the first. If there are no
+                    hidden layers in the network this step can be skipped.
                 </p>
                 
-                [D2]
+                <p>
+                    The delta value of each neuron in the last hidden layer is calculated by multiplying the weight of each synapse
+                    leaving the neuron by the error of the output which the synapse connects to. All weight-error products of a
+                    neuron are then summed to give the final delta value of that neuron.
+                </p>
+               
+                <p>
+                    The diagram below illustrates how the delta value for the topmost hidden neuron is calculated. As stated above,
+                    this process is repeated for each neuron in the layer with the corresponding weights.
+                </p>
+
+               <div id="img">
+               
+                    <img src="images/Delta 1.png" />
+                    
+               </div>
                 
                 <p>
-                    These steps are repeated until the delta value for each output and medial neuron has been calculated. The
-                    procedure described here is equivalent to running the network backwards by using the error values as an input
-                    which is feed to the output neurons while ignoring the activation function.
+                    If the network contains more than one hidden layer, then each following layer is visited and the delta value
+                    of each neuron in the layer is calculated as before. However, the delta values of the previous layer is used
+                    instead of the error values.
+                </p>
+                
+                <p>
+                    The diagram below shows how the delta values for a neuron in the first hidden layer is calculated using delta values
+                    from the previous layer. This is repeated for every hidden layer after the last in the network.
+                    
+                </p>
+
+               <div id="img">
+               
+                    <img src="images/Delta 2.png" />
+                    
+               </div>
+                
+                <p>
+                    The procedure described here is equivalent to running the network backwards, by using the error values as an input
+                    which is given to the output neurons then propagated through the network to the input layer, storing the input
+                    of each neuron as its delta value and ignoring the activation function.
                 </p>
 
                 <h3>Weight Adjustment</h3>
@@ -199,7 +244,8 @@ procedure backPropagation():
         endfor
     endfor
 
-    repeat procedure until inputs exhausted or total error acceptable
+    repeat procedure until inputs exhausted
+        or total error acceptable
     
 endprocedure
                 </pre>
@@ -234,6 +280,13 @@ endprocedure
                     Also, as mentioned before, the speed at which a neural network will learn depends on the learning rate, but the
                     learning rate cannot be set to high without risking oscillations. This marks a fairly severe limitation on back
                     propagation and greatly reduces its speed.
+                
+                
+                <h1>References</h1>
+                
+                </p>
+                    <a href="http://galaxy.agh.edu.pl/~vlsi/AI/backp_t_en/backprop.html">1</a>
+                    <a href="http://www.learnartificialneuralnetworks.com/backpropagation.html">2</a>
                 </p>
 		       			  
 		    </div>
