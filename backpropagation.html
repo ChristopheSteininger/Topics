@@ -53,7 +53,7 @@
 		    
 		    <div id="content">
 
-                <h1>Introduction</h1>
+                <h1>Back propagation</h1>
                 
                 <p>
                     In large neural networks simulating more complex behaviours, finding the weights of each synapse is too complex
@@ -62,7 +62,7 @@
                 </p>
                 
                 <p>
-                    Back propagation works by calculating the difference between each output of
+                    Back propagation is a supervised learning algorithm which works by calculating the difference between each output of
                     the network and the expected output for the inputs to the network, then propagating this error backwards
                     through the network to adjust the weights and reduce the error in the future. By repeating this train and test
                     loop over a large range of valid inputs, the neural network will learn the expected behaviour and the errors
@@ -174,7 +174,7 @@
                 <p>
                     Finally, each synaptic weight is adjusted by the product of the learning rate, the input to the synapse, the
                     delta value of the neuron which the synapse connects to and gradient of the activation function at the output
-                    of the neuron.
+                    of the synapse (or the input of the neuron).
                 </p>
                 
                 [D3]
@@ -212,50 +212,76 @@
                 <h1>Pseudo code</h1>
                 
                 <p>
-                    Below is pseudo code implementing back propagation on a network with one medial layer.
+                    Below is pseudo code implementing back propagation on a network with one hidden layer. This can be extended
+                    to support a network with a variable number of layers.
                 </p>
                            
                 <pre class="brush: pas; gutter: false; toolbar: false;">
                 
-procedure backPropagation():
+                    procedure backPropagation():
 
-    inputs := getInput()
+                        inputs := getInput()
 
-    expected := getExpected(inputs)
-    actual := runNetwork(inputs)
+                        expected := getExpected(inputs)
+                        actual := runNetwork(inputs)
 
-    errors := calculateErrors(expected, actual)
+                        errors := calculateErrors(expected, actual)
 
-    // Calculate the delta values of the medial neurons.
-    for n := 0 to medialNeuronCount:
-        sum := 0
-        for o := 0 to outputCount:
-            sum := sum + weightsOut[n, o] * errors[o]
-        endfor
-        deltas[n] := sum
-    endfor
+                        // 1: Calculate the delta values of the hidden neurons.
+                        for n := 0 to hiddenNeuronCount:
+                            sum := 0
+                            for o := 0 to outputCount:
+                                sum := sum + weightsOut[n, o] * errors[o]
+                            endfor
+                            deltas[n] := sum
+                        endfor
 
-    // Adjust the weights between the input and medial neurons
-    for i := 0 to inputCount:
-        for n := 0 to medialNeuronCount:
-            weightsIn[i, n] := weightsIn[i, n] + learningRate
-                * inputs[i] * deltas[n] * dActivation(medialOut[n])
-        endfor
-    endfor
+                        // 2: Adjust the weights between the input and hidden neurons
+                        for i := 0 to inputCount:
+                            for n := 0 to hiddenNeuronCount:
+                                weightsIn[i, n] := weightsIn[i, n] + learningRate
+                                    * inputs[i] * deltas[n] * dLogistic(hiddenOut[n])
+                            endfor
+                        endfor
 
-    // Adjust the weights between the medial and output neurons
-    for n := 0 to medialNeuronCount:
-        for o := 0 to outputCount:
-            weightsOut[n, o] := weightsOut[n, o] + learningRate
-                * medialOut[n] * errors[o]
-        endfor
-    endfor
+                        // 3: Adjust the weights between the hidden and output neurons
+                        for n := 0 to hiddenNeuronCount:
+                            for o := 0 to outputCount:
+                                weightsOut[n, o] := weightsOut[n, o] + learningRate
+                                    * hiddenOut[n] * errors[o]
+                            endfor
+                        endfor
 
-    repeat procedure until inputs exhausted
-        or total error acceptable
-    
-endprocedure
+                        repeat procedure until inputs exhausted
+                            or total error acceptable
+                        
+                    endprocedure
+                    
                 </pre>
+                
+                <p>
+                    The weight update performed in section 2 of the pseudo code shows the derivative of the activation function
+                    taking the output of the current hidden neuron as its input instead of the input of the hidden neuron as stated
+                    in weight adjustment section above. This is because the derivative of the logistics function can be defined only
+                    in terms of the output of the function:
+                </p>
+                
+                <div id="img">
+                    
+                    Logistics(x) = 1 / (1 + exp(-x))
+                    
+                </div>
+                
+                <div id="img">
+                    
+                    dLogistics(x)/dx = Logistics(x) * (1 - Logistics(x))
+                    
+                </div>
+                
+                <p>
+                    This saves space by removing the need to store the input of each neuron when calculating the outputs of the
+                    network.
+                </p>
 
                 <h1>Intuition</h1>
 
@@ -273,7 +299,7 @@ endprocedure
                 </div>
 
                 <p>
-                    Where ??? is the weight between medial neuron ??? and output ???, ??? is the error at ??? and ??? is the output
+                    Where ??? is the weight between hidden neuron ??? and output ???, ??? is the error at ??? and ??? is the output
                     of ???.
                 </p>
                 
@@ -289,7 +315,7 @@ endprocedure
                 <p>
                     There are some problems associated with the back propagation algorithm. For instance, it might not find a solution
                     - there is not guarantee that the network will reach its target. The network is also very sensitive to the number
-                    of medial layers. If there are too little, it might not be able to learn what you want it to, but if there are too
+                    of hidden layers. If there are too little, it might not be able to learn what you want it to, but if there are too
                     many then it will learn very slowly. This means that a neural network has to be reconfigured for each function you
                     want it to do, unless they are similar. This takes a lot of time, and requires some experience to get right without
                     resorting to trial and error.
