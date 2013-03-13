@@ -1,0 +1,119 @@
+<html>
+
+<head>
+
+    <title>Neural Networks and their applications</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div id="header">
+            <a href="index.html"><img id="header"/></a>		 
+        </div>
+
+        <div id="navigation">
+
+            <ul id="nav-one" class="nav">
+
+                <li>
+                    <a href="index.html">Introduction</a>
+                </li>
+
+                <li>
+                    <a href="perceptrons.html">Perceptrons</a>
+                </li>
+
+                <li>
+                    <a href="backpropagation.html">Backpropagation</a>
+                </li>
+
+                <li>
+                    <a href="applet.html">Applet</a>
+                </li>
+                
+            </ul>
+            
+        </div>
+ 
+        <div id="faux">
+        
+            <div id="leftcolumn">
+		    </div>
+		    
+		    <div id="content">
+		    
+		    <h1>Applet</h1>
+		    
+		    <p>
+		        The applet below can simulate a neural network with a variable number of hidden layers, neurons per layer and
+		        learning rates. The network can also be trained using back propagation to convert polar coordinates to cartesain
+		        form and plot the total error as the network is trained.
+		    </p>
+           
+           <p>
+             <applet codebase="applet/bin/" code="ui.Main"
+                     width=670 height=800>
+             </applet>
+           </p>
+           
+           <h1>Instructions</h1>
+           
+           <h2>Setup Network</h2>
+           
+           <p>
+               Here you can set parameters of the neural network: the number of layers, neurons in each hidden layer and the
+               learning rate of the network with the corresponding spin boxes. Click the Apply button to create a new neural
+               network with the given parameters, or press Cancel to discard changes to the parameters and leave the current
+               network unmodified.
+           </p>
+           
+           <p>
+               When first started, the applet will use a network with 2 hidden layers of 15 neurons each and a learning rate
+               of 0.1.
+           </p>
+           
+           <h2>Train Network</h2>
+           
+           <p>
+               The current network can be trained by selecting the number of train-test loops in the iterations spinner and
+               clicking the Train button. Once the training is finished, a graph will appear showing the total percentage error
+               along the y axis against the number of iterations on the x axis. This can be repeated to train the network any
+               number of times.
+           </p>
+           
+           <p>
+              Clicking the Reset Weights button will randomize the weights of the network, allowing you to train the same network
+              again to see any difference in the results.
+           </p>
+           
+           <h2>Test Network</h2>
+           
+           <p>
+              Here you can see the actual output of the network by changing the values of r and theta. The network will run with
+              the current values of r and theta as soon as either of the spinners are modified. The actual x and y outputs of the
+              network are displayed along with the expected values.
+           </p>
+           
+		    </div>
+		    
+		    <div id="rightcolumn">
+		    </div>
+
+        </div>	   
+
+        <div id="footer">
+		      
+            Imperial College Computing		
+
+        </div>
+		 
+    </div>
+    
+</body>
+
+</html>
+
