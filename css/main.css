@@ -126,12 +126,15 @@ textarea {
 }
 
 .nav { 
-	top: -12px;
-	left: 247px;
+	top: -15px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 18;
 	list-style: none;
-	position: relative;
+        padding-top: 5px;
+        z-index: 1;
+        position:relative;
+        left:250px;
+      
 
 }
 
@@ -153,3 +156,7 @@ textarea {
 .nav li a:hover {
     color: #91B3CE;	
 }
+
+br.clearLeft {
+   clear: left;        
+}​
