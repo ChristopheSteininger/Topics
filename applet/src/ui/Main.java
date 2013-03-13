@@ -3,6 +3,8 @@ package ui;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JApplet;
@@ -73,6 +75,15 @@ public class Main extends JApplet {
     }
     
     private void attachHandlers() {
+        
+        getContentPane().addComponentListener(new ComponentAdapter() {
+            
+            @Override
+            public void componentResized(ComponentEvent e) {
+                
+                plGraph.getGraph().redraw();
+            }
+        });
         
         // Add apply button handler.
         plSetup.getApplyButton().addActionListener(new ActionListener() {
