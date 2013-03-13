@@ -262,14 +262,26 @@ endprocedure
                 <p>
                     The previous section describes how the back propagation algorithm teaches a network, but not why. As stated
                     before, back propagation applies an input to the network and measures the error between the expected and actual
-                    outputs. These errors can be brought down to zero if the network were given the same inputs again by adjusting
-                    the weights of synapses leading to the output neurons using the delta rule:
+                    outputs. These errors can be brought down to zero in a single layer network if the network were given the same
+                    inputs again by adjusting the weights of synapses leading to the output neurons using the delta rule:
                 </p>
+                
+                <div id="img">
+                
+                    deltaW = learning rate * error * gradient of activation fuction at input * output
+                
+                </div>
 
                 <p>
                     Where ??? is the weight between medial neuron ??? and output ???, ??? is the error at ??? and ??? is the output
-                    of ???. However, this does not adjust the weights between the input and first medial layer, or between medial
-                    layers. So the error is propagated backwards through the layers    
+                    of ???.
+                </p>
+                
+                <p>
+                    This will train a single layer network but cannot be applied to multilayer networks because the error value
+                    of each neuron is unknown. However, running the network in reverse with the error values as described above,
+                    gives a value for the amount which the neuron contributed to the errors in the next layer. This delta value
+                    can then be used as the error value in the delta rule, giving the weight update equation.
                 </p>
 
                 <h1>Limitations</h1>
