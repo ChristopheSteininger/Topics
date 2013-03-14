@@ -208,7 +208,11 @@ $(function() {
                     of the synapse (or the input of the neuron).
                 </p>
                 
-                [D3]
+                <div id="img">
+                
+                    <img src="images/Weight Update.png" />
+                
+                </div>
 
                 <p>
                     The final set of synapses leading to the output layer are adjusted by the same product without the gradient
@@ -216,29 +220,38 @@ $(function() {
                     is repeated until the errors reduce below a value acceptable to the designer of the network.
                 </p>
 
-                <h2>Learning Rate and Momentum</h2>
+                <h2>Learning Rate and Speed Improvements</h2>
 
                 <p>
-                    The learning rate is used to prevent overshooting the target; this happens when the
-                    network learns too quickly, so this value needs to be low (usually around 0.1), but if it is too low the
-                    network will learn very slowly.
+                    The learning rate is used to prevent overshooting the target; this happens when the network learns too quickly,
+                    so this value needs to be low (usually around 0.1), but if it is too low the network will learn very slowly.
+                    Usually, the learning rate set to the largest possible value which does not overshoot the target; this value is
+                    normally determined by trial and error. However, small weight adjustments are only needed near the end of the
+                    training when the network is close to the optimal values, so larger adjustments could be made at the start of
+                    the training.
                 </p>
                 
                 <p>
-                    One workaround for this is dynamically changing the rate using a function; when the network is first started
-                    the rate could be higher to make rougher adjustments and then lowered later to fine tune the weights near the
-                    end of the training. The downside of this is that it can be hard to find the optimal rate for each stage of
-                    the network - if it doesn't decrease quick enough, then the network will learn too quickly and overshoot the
-                    optimal set of weights leading it to overcompensate continually and oscillate around the optimal weights.
+                    One method for achieving this is to dynamically change the rate using a function; when the network is first started
+                    the rate can be high to make rougher adjustments and then lowered later to fine tune the weights near the
+                    end of the training. The downside of this approach is that it can be hard to find the optimal rate for each
+                    stage of the training - if the rate doesn't decrease fast enough, then the network will learn too quickly
+                    and overshoot the optimal set of weights leading it to overcompensate continually and oscillate around the
+                    optimal weights.
                 </p>
                 
                 <p>
-                    Instead, the rate of learning is adjusted by adding the momentum term to the weight update equation in place
-                    of the multiplied by the learning rate. The momentum term is simply the previous weight adjustment (intially
-                    zero) multipied by the momentum constant. This influences the weights in the direction previously travelled
-                    which prevents the network oscillating and speeds up the initial learning stage where the weights are adjusted
-                    in the same direction over many iterations.
+                    A better approach is to add the momentum term to the weight update equation. The momentum term is simply the
+                    previous weight adjustment (intially zero) multipied by the momentum constant. This influences the weights in
+                    the direction previously travelled which prevents the network oscillating and speeds up the initial learning
+                    stage where the weights are adjusted in the same direction over many iterations.
                 </p>
+                
+                <div id="img">
+                
+                    <img src="images/Momentum Weight Update.png" />
+                
+                </div>
 
                 <h1>Pseudo code</h1>
                 
