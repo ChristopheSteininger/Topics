@@ -48,9 +48,14 @@ textarea {
     text-align: center;
     margin-bottom:1.5em;
 }
+#img p {
+  font-size: 12px;
+  margin-top: 0px;
+}
 
 #ref,#ref ul {
     list-style: none;
+    font-size: 14px;
 }
 
 #wrapper { 
