@@ -23,11 +23,16 @@ public class Graph extends JPanel {
         data = null;
     }
     
-    // Redraws the graph width the current data.
     public void redraw() {
         
-        Graphics graphics = getGraphics();
-        paintComponent(graphics);
+        paintComponent(getGraphics());
+    }
+    
+    // Redraws the graph width the current data.
+    @Override
+    public void paintComponent(Graphics graphics) {
+        
+        super.paintComponent(graphics);
         
         if (data == null) {
             

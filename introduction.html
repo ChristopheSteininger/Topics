@@ -1,0 +1,247 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <title>Neural Networks and their applications</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+
+</head>
+
+
+
+<body>
+
+    <div id="wrapper">
+
+
+</script>
+<script type='text/javascript'>
+$(function() {
+    // Stick the #nav to the top of the window
+    var nav = $('#navigation');
+    var navHomeY = nav.offset().top;
+    var isFixed = false;
+    var $w = $(window);
+    $w.scroll(function() {
+        var scrollTop = $w.scrollTop();
+        var shouldBeFixed = scrollTop > navHomeY;
+        if (shouldBeFixed && !isFixed) {
+            nav.css({
+                position: 'fixed',
+                top: 0,
+                left:  nav.offset().left,
+                width: nav.width()
+            });
+            isFixed = true;
+        }
+        else if (!shouldBeFixed && isFixed)
+        {
+            nav.css({
+                padding: 9,
+                left: 0,
+                position: 'relative'
+           
+            });
+            isFixed = false;
+        }
+    });
+});
+</script>
+
+        <a href="index.html" id="header"></a>
+
+        <div id="navigation">
+
+            <ul id="nav-one" class="nav">
+
+                <li>
+                    <a href="introduction.html">Introduction</a>
+                </li>
+
+                <li>
+                    <a href="perceptrons.html">Perceptrons</a>
+                </li>
+
+                <li>
+                    <a href="backpropagation.html">Backpropagation</a>
+                </li>
+
+                <li>
+                    <a href="applet.html">Applet</a>
+                </li>
+          
+                
+            </ul>
+            
+        </div>
+ 
+        <div id="faux">
+        
+            <div id="leftcolumn">
+		    </div>
+		    
+		    <div id="content">
+                  
+                <h1>What are neural networks?</h1>
+                
+                <p>
+                    Neural Networks are logical (or physical) structures in which multiple nodes communicate with each other through synapses that interconnect them.
+                    They respond to input by modifying their behaviour, self-adjusting to create consistent responses.
+                </p>
+                    
+                <div id="img">
+                  
+                    <img src="images/neuron.png" alt="neuron map" title="Neuron Scheme"/>
+                    <p>Image source: http://home.agh.edu.pl/~vlsi/AI/intro</p>
+                        
+                </div>
+
+                <h2>ANN - Artificial Neural Networks</h2>
+                               
+                <p>
+                     ANNs help to address problems whose solutions are complex and impractical to formulate explicitly. Their idea is analogous to the structure and behaviour of the biological nervous system. How the human brain actually works is an elaborate and complex mystery so the actual models rely more on the observed brain performance characteristic. This includes exhibiting particular characteristics like learning
+ from experience, deriving from previous data to the new one and extracting abstract but valuable data from input containing irrelevant data.</p>
+ 
+<p>An important fact to note is that ANN generalises automatically as a result of its structure, not by implementing human reasoning in the form of logically designed programs. This is why, once trained, they have the ability to see through minor noise and distortion comparably to the human brain dealing with the "imperfections" of the world.
+                </p>
+			    
+			    <h2>How do ANNs work</h2>
+			       
+			    <p>
+			        There exist many paradigms for artificial neural networks, however most of them are based on a set of a large number of interconnected nodes that work together to compute output nodes, using the input and weights (synapses).
+
+Such a network will need to be trained so that application of a set of inputs produces the desired (or at least consistent) set of outputs. This process is analogous to
+ human brain learning patterns and remembering relevant information. To achieve this, various training algorithms have been developed, mostly of two types; supervised and
+ unsupervised learning. </p>
+<h3>Supervised learning</h3>
+<p>
+Supervised learning requires the pairing of each input with the corresponding target output. Together these are called a training pair. Usually a network is trained over a plentiful of such training pairs. An input is applied, the output of the network is calculated using its current settings (i.e. the weights) and the difference (error) between the target output and the calculated result is computed. The error is then fed back to the network and used to adjust the network such that the error is minimised. The algorithm is applied consecutively to each training pair so that at the end of training the error for the entire training set is at an acceptably low level.</p>
+<h3>Unsupervised learning</h3>
+<p>
+Unsupervised learning is a more complex model of learning when compared to the supervised learning, although it is essentially the corresponding model of learning in biological systems. It is the answer to criticism of  supervised learning as a biologically irrational model. It is difficult and presumably incorrect to reason of the brain as a mechanism that learns everything through comparing desired and actual outputs, trying to minimise the error between the two. If this were to happen in real life, where would the desired outputs come from? Unsupervised learning requires no target output, and hence, no comparisons are carried out to adjust the network. The training set consists solely of inputs. The algorithm modifies network weights to produce outputs that are consistent with each other. This mean that a two sufficiently similar inputs will result in the same pattern of outputs. The training process, therefore, relies mostly on extracting statistical properties of the training set, grouping similar inputs together. The difficulty for an unsupervised algorithm is, of course, to identify reasonably the number of such groups that can be created from the inputs and the choice of non-biased boundaries between them. The task of making universally accepted classification of data can be often difficult even for people.
+			    </p>
+
+                <h2>Possible Drawbacks</h2>
+                <p>
+                    Despite all those years of effort on trying to make artificial neural networks resemble the biological model as closely as possible, awareness of their limitations has always been a
+                    concern and a topic of lively discussions. Not even the most optimistic scientist will suggest that ANNs will soon duplicate the actual functions of the human brain. Enthusiasm is
+                    moderated when the studies show that the actual "intelligence" exhibited by the most sophisticated networks seems to be below the level of a tapeworm. </p>
+                    
+                    <p>It is, however, an incorrect
+                    decision to underestimate the surprising brainlike performance of ANNs that can be achieved in certain cases - something that has happened to the ANN research field before, considerably
+                    cooling down the interests and advancements in this field for a period of time. The abilities, even if limited to this day, give a hint that deep understanding of human intelligence may
+                    lie close at hand, while the revolutionary applications of this progress are already arriving.
+                </p>
+                
+                <h2>Applications</h2>
+                
+                <p>
+                    Neural networks can have many different applications, in areas such as classification, clustering, pattern association, forecasting,
+                    optimisation and searching. These can mostly be categorised into two classes, supervised and unsupervised learning, as described above.
+                    Below are some examples of some of these applications and how a neural network can be used with them.
+                </p>
+                
+                <h3>Classification</h3>
+                
+                <p>
+                    A solid example of supervised learning, this is when a neural network uses an accurate and plentiful data source to categorise
+                    its inputs to a specific class. These classes are created from the data source using common identifiers and patterns, so it is
+                    vital that the data does not have mistakes or an anomalous pattern maybe be found that distorts the network. A network is adapted
+                    for classifying by allowing each output node to correspond to a different class. If a specific output node has a higher value than
+                    the others, then that is the resulting class for the input. This may have to be a certain amount higher than the other classes, or
+                    it might even have to first pass a threshold to be counted as classified.
+                </p>
+                
+                <p>
+                    An example of this is recognising printed from handwritten characters; examples of printed and handwritten characters are used as
+                    a training set, and thus the network can learn and update its output nodes accordingly to specify its chosen class. Another application
+                    is in determining signal sources from sonar and radar data. This is slightly different since sources may be unique, and so don't really
+                    count as a class, but networks designed for classification are the correct type to solve this problem.
+                <p>
+                
+                <h3>Clustering</h3>
+                
+                <p>
+                    Clustering is where a network groups together objects that are similar to each other. For example,
+                    a network could classify animals into their separate species by clustering together similar types.
+                    While this sounds similar to classification, clustering differs because it is used for unsupervised
+                    learning, i.e. there is no training data set. Commonly, networks distinguish clusters using distance
+                    relationships - so for the animals example, their proportions would be used to cluster them.
+                </p>
+                
+                <p>
+                    This kind of network is given samples to cluster, rather than a single input as used
+                    in classification. The nodes intially respond randomly, but higher output nodes eventually
+                    respond more strongly to their samples, and so become specialised to that type of input, thus
+                    allowing the sample data to be clustered.
+                </p>
+                
+                <h3>Pattern Association</h3>
+                
+                <p>
+                    This is used to generate a certain output from a given input; for example, a network can try and generate
+                    an uncorrupted output from a corrupted input, or more simply just convert between types, such as an image
+                    to a name. The former is an example of auto-association, whereas the latter corresponds to hetero-association.
+                    This also links in with the idea of recall, where a network can produced a certain output given a certain input.
+                </p>
+                
+                <p>
+                    Networks can be setup for pattern association by adjusting the weights so they acts like a function between input
+                    and output nodes, and outputs nodes are modified until their output patterns no longer change.
+                </p>
+                
+                <h3>Function Approximation</h3>
+                
+                <p>
+                    Function approximation is the process of training a network to follow a mathematical function. This requires training
+                    of the network, which can often be done by the computer creating the network since mathematical functions can, for the
+                    most part, be calculated exactly already. As such, this wouldn't be entirely helpful to simulate, so it is usually used
+                    to create/find a function for a certain complex model.
+                </p>
+                
+                <p>
+                    This application is usually quite well solved with the back propagation algorithm, since there are usually good data sets
+                    to help it learn a function. This algorithm is explained in detail <a href="backpropagation.html">here</a>.
+                </p>
+                
+                <h1>References</h1>
+                
+                <div id="ref"> 
+                
+                    <ol>
+                         <li>
+                             Michael Chester (1993). <em>Neural Networks : A Tutorial.</em> Englewood Cliffs: London : PTR Prentice Hall. p1-50.
+                         </li>
+                         
+                         <li>
+                             <a href="http://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html">http://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html</a>
+                         </li>
+                         
+                         <li>
+                            Kishan Mehrotra, Chilukuri K. Mohan, Sanjay Ranka (1997). <em>Elements Of Artificial Neural Networks</em> Massachusetts Institute of Technology. p24-35.
+                         </li>                           
+                    </ol>
+                                       
+                </div>
+                
+		    </div>
+		    
+		    <div id="rightcolumn">
+		    </div>
+
+        </div>	   
+
+        <div id="footer">
+		      
+            Imperial College Computing		
+
+        </div>
+		 
+    </div>
+    
+</body>
+
+</html>
