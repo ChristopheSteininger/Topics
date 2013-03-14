@@ -203,9 +203,11 @@ $(function() {
                 <h3>Weight Adjustment</h3>
                 
                 <p>
-                    Finally, each synaptic weight is adjusted by the product of the learning rate, the input to the synapse, the
-                    delta value of the neuron which the synapse connects to and gradient of the activation function at the output
-                    of the synapse (or the input of the neuron).
+                    Finally, each synaptic weight in the network is adjusted, as shown in the diagram below, by the product of the
+                    learning rate <em>LR</em>, the input to the synapse <em>I</em>, the delta value of the neuron which the synapse
+                    connects to <em>d<sub>n</sub></em> and gradient of the activation function at the output of the synapse
+                    (or the input of the neuron) <em>da/dx(O)</em>. Here, <em>a(x)</em> is the activation function and
+                    <em>O</em> is the output of the neuron where the activation function has not yet been applied.
                 </p>
                 
                 <div id="img">
