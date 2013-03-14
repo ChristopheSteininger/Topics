@@ -56,6 +56,13 @@ public class Main extends JApplet {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public void setSize(int widht, int height) {
+
+        super.setSize(width, height);
+        validate();
+    }
     
     // Creates the GUI in the given container.
     private void createGUI(Container container) {
