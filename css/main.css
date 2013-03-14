@@ -49,8 +49,8 @@ textarea {
     margin-bottom:1.5em;
 }
 
-#ref,#ref ul {
-    list-style: none;
+#ref ol {
+    margin: 22px;
 }
 
 #wrapper { 
