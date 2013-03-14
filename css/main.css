@@ -53,8 +53,7 @@ textarea {
   margin-top: 0px;
 }
 
-#ref,#ref ul {
-    list-style: none;
+#ref ol {
     font-size: 14px;
 }
 
@@ -76,12 +75,6 @@ textarea {
  	background: black url(../images/neuralNetwork.jpg) center no-repeat;
     display: block;
  	content: '';
-}
-
-#navigation {
-        padding: 9px;
-	background: #3E6B8C;
-	z-index: 2;
 }
 
 #leftcolumn { 
@@ -127,6 +120,12 @@ textarea {
 
 /* navigation */
 
+#navigation {
+    padding: 9px;
+	background: #3E6B8C;
+	z-index: 2;
+}
+
 #nav-one li:hover a, #nav-one li.sfHover a {
     color: #000;
 }
@@ -136,10 +135,10 @@ textarea {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 18;
 	list-style: none;
-        padding-top: 5px;
-        z-index: 1;
-        position:relative;
-        left:250px;
+    padding-top: 5px;
+    z-index: 1;
+    position:relative;
+    left:250px;
       
 
 }
@@ -164,5 +163,5 @@ textarea {
 }
 
 br.clearLeft {
-   clear: left;        
+    clear: left;        
 }​
