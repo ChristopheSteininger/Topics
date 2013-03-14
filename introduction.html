@@ -138,6 +138,7 @@ Unsupervised learning is a more complex model of learning when compared to the s
                 <p>
                     Neural networks can have many different applications, in areas such as classification, clustering, pattern association, forecasting,
                     optimisation and searching. These can mostly be categorised into two classes, supervised and unsupervised learning, as described above.
+                    Below are some examples of some of these applications and how a neural network can be used with them.
                 </p>
                 
                 <h3>Classification</h3>
@@ -180,25 +181,27 @@ Unsupervised learning is a more complex model of learning when compared to the s
                 <p>
                     This is used to generate a certain output from a given input; for example, a network can try and generate
                     an uncorrupted output from a corrupted input, or more simply just convert between types, such as an image
-                    to a name. 
+                    to a name. The former is an example of auto-association, whereas the latter corresponds to hetero-association.
+                    This also links in with the idea of recall, where a network can produced a certain output given a certain input.
                 </p>
                 
-                <h3>Forecasting</h3>
-                
                 <p>
-                
+                    Networks can be setup for pattern association by adjusting the weights so they acts like a function between input
+                    and output nodes, and outputs nodes are modified until their output patterns no longer change.
                 </p>
                 
-                <h3>Optimisation</h3>
+                <h3>Function Approximation</h3>
                 
                 <p>
-                
+                    Function approximation is the process of training a network to follow a mathematical function. This requires training
+                    of the network, which can often be done by the computer creating the network since mathematical functions can, for the
+                    most part, be calculated exactly already. As such, this wouldn't be entirely helpful to simulate, so it is usually used
+                    to create/find a function for a certain complex model.
                 </p>
                 
-                <h3>Searching</h3>
-                
                 <p>
-                
+                    This application is usually quite well solved with the back propagation algorithm, since there are usually good data sets
+                    to help it learn a function. This algorithm is explained in detail <a href="backpropagation.html">here</a>.
                 </p>
                 
                 <h1>References</h1>
