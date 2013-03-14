@@ -50,14 +50,6 @@ $(function() {
 });
 </script>
 
-<script language="javascript" type="text/javascript">
-function popitup(url) {
-	newwindow=window.open(url,'name','height=820,width=690');
-	if (window.focus) {newwindow.focus()}
-	return false;
-}
-</script>
-
             <ul id="nav-one" class="nav">
 
                 <li>
@@ -97,7 +89,7 @@ function popitup(url) {
            
            <p>
            
-                <a href="popup.html" onclick="return popitup('popup.html')">Click here to launch the applet</a>
+                <applet name="myApplet" codebase="applet/bin/" code="ui.Main" width="670" height="800"></applet>
                 
            </p>
            
