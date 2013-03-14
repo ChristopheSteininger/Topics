@@ -36,8 +36,8 @@ public class Main extends JApplet {
         network = io.getValidNetwork();
         trainer = new Trainer(network, io);
         
-        setSize(670, 800);
-        setMinimumSize(getSize());
+        //setSize(670, 800);
+        //setMinimumSize(getSize());
         
         // Setup the GUI.
         try {
@@ -58,12 +58,12 @@ public class Main extends JApplet {
     }
 
     @Override
-    public void setSize(int widht, int height) {
+    public void setSize(int width, int height) {
 
         super.setSize(width, height);
         validate();
     }
-    
+
     // Creates the GUI in the given container.
     private void createGUI(Container container) {
         
