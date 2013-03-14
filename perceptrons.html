@@ -109,10 +109,15 @@ $(function() {
                     simplest kind of neural network, and is also a feedforward neural network,
                     meaning that there is no directed cycles. In this network, information only
                     moves in one direction, straight from the input layer to the output layer.
-                    The perceptron works by the input layer sending a signal to the output
-                    player through the weighted connections. Each node on the output layer sums
-                    up the incoming signal values, and if a threshold is exceeded, the node
-                    fires an output signal.
+                </p>
+                
+                <p>
+                    To calculate the output of the network, each input is put onto the
+                    corresponding input neuron. Each input neuron then passes this value unmodified
+                    to the output layer through the synapses, which multiply the input by the weight
+                    of the synapse. The value of a output neurons is the sum of every input the
+                    neuron recieves from the synapses leading to it. Once all these calculations are
+                    made, the output of the network is simply the value of the output neurons.
                 </p>
                 
                 <div id="img">
@@ -164,9 +169,25 @@ $(function() {
                 <h1>Multi Layer Perceptrons</h1>
                 
                 <p>
-                    Multi-layer perceptrons are very similar to single layer perceptrons, with the exception of some hidden layers
-                    between the input and output layers. These work in the same way, with each neuron in the previous layer being
-                    connected to every neuron in the next layer.
+                    Multi-layer perceptrons are very similar to single layer perceptrons, with the exception of one or more hidden
+                    layers between the input and output layers. These work in the same way, with each neuron in the previous layer
+                    being connected to every neuron in the next layer.
+                </p>
+                
+                <p>
+                    The value of a neuron in a hidden layer is calculated like the value of an output neuron: the sum of the output
+                    of every synapse leading to the neuron. However, a special type of function called the activation function
+                    is then applied to this sum to calculate the final value of the hidden neuron. The activation function is a
+                    non-linear differentiable function which tends to 1 as the input tends to positive infinity and -1
+                    as the input tends to negative infinity. Applying this function "squashes" the output of every hidden neuron
+                    between 1 and -1. The logistics function, <em>1 / (1 + exp(-x))</em> is commonly used as the activation
+                    function of a network.
+                </p>
+                
+                <p>
+                    The activation function is needed to gain an advantage from using hidden layers, without the activation function
+                    any multi-layer perceptron can be reduced to a single layer percetron with equivalent output. The input and
+                    output neurons behave in the same way as in a single layer perceptron.
                 </p>
 
                 <div id="img">
