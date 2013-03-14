@@ -20,7 +20,7 @@
 <script type='text/javascript'>
 $(function() {
     // Stick the #nav to the top of the window
-    var nav = $('#nav-one');
+    var nav = $('#navigation');
     var navHomeY = nav.offset().top;
     var isFixed = false;
     var $w = $(window);
@@ -39,15 +39,23 @@ $(function() {
         else if (!shouldBeFixed && isFixed)
         {
             nav.css({
-                left: 250,
-                position: 'relative',
-                top: -15
+                padding: 9,
+                left: 0,
+                position: 'relative'
            
             });
             isFixed = false;
         }
     });
 });
+</script>
+
+<script language="javascript" type="text/javascript">
+function popitup(url) {
+	newwindow=window.open(url,'name','height=820,width=690');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
 </script>
 
             <ul id="nav-one" class="nav">
@@ -82,15 +90,15 @@ $(function() {
 		    <h1>Applet</h1>
 		    
 		    <p>
-		        The applet below can simulate a neural network with a variable number of hidden layers and neurons per layer.
+		        This applet can simulate a neural network with a variable number of hidden layers and neurons per layer.
 		        The network can also be trained using back propagation by setting the learning rate and momentum to convert polar
 		        coordinates to cartesain form and plot the total error as the network is trained.
 		    </p>
            
            <p>
-             <applet codebase="applet/bin/" code="ui.Main"
-                     width=670 height=800>
-             </applet>
+           
+                <a href="popup.html" onclick="return popitup('popup.html')">Click here to launch the applet</a>
+                
            </p>
            
            <h1>Instructions</h1>
