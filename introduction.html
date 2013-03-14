@@ -136,33 +136,70 @@ Unsupervised learning is a more complex model of learning when compared to the s
                 <h2>Applications</h2>
                 
                 <p>
-                    Neural networks can have many different applications, in areas such as classification, clustering, pattern recognition, forecasting,
-                    optimisation and searching. These can mostly be categorised into two classes, supervised and unsupervised learning.
+                    Neural networks can have many different applications, in areas such as classification, clustering, pattern association, forecasting,
+                    optimisation and searching. These can mostly be categorised into two classes, supervised and unsupervised learning, as described above.
                 </p>
                 
-                <h3>Supervised learning</h3>
+                <h3>Classification</h3>
                 
                 <p>
-                    Supervised learning, as implied by the name, has a so called teacher to guide it. For neural networks, this means
-                    giving it data with an input and an expected output. Using this, the network can learn what inputs correspond to
-                    what outputs, and eventually (with enough training data) it should be able to extrapolate what it has learnt onto
-                    an input it hasn't seen before, and calculate the correct output. This is an example of classification - in a more
-                    abstract way, the network assigns classes to each object.
+                    A solid example of supervised learning, this is when a neural network uses an accurate and plentiful data source to categorise
+                    its inputs to a specific class. These classes are created from the data source using common identifiers and patterns, so it is
+                    vital that the data does not have mistakes or an anomalous pattern maybe be found that distorts the network. A network is adapted
+                    for classifying by allowing each output node to correspond to a different class. If a specific output node has a higher value than
+                    the others, then that is the resulting class for the input. This may have to be a certain amount higher than the other classes, or
+                    it might even have to first pass a threshold to be counted as classified.
                 </p>
                 
                 <p>
-                    An example of this is recognising printed from handwritten characters, or determining signal sources, since these can be
-                    done provided an accurate and plentiful data source is provided.
-                </p>
+                    An example of this is recognising printed from handwritten characters; examples of printed and handwritten characters are used as
+                    a training set, and thus the network can learn and update its output nodes accordingly to specify its chosen class. Another application
+                    is in determining signal sources from sonar and radar data. This is slightly different since sources may be unique, and so don't really
+                    count as a class, but networks designed for classification are the correct type to solve this problem.
+                <p>
                 
-                <h3>Unsupervised learning</h3>
+                <h3>Clustering</h3>
                 
                 <p>
-                    Unsupervised learning means there is no teaching/training, so the network has to heuristically work out a given problem
-                    using its environment or a different kind of sample data. The main subset of this is clustering, where a network groups
-                    together objects that are similar to each other. For example, a network could classify animals into their species by
-                    clustering together similar types.
-                </p.
+                    Clustering is where a network groups together objects that are similar to each other. For example,
+                    a network could classify animals into their separate species by clustering together similar types.
+                    While this sounds similar to classification, clustering differs because it is used for unsupervised
+                    learning, i.e. there is no training data set. Commonly, networks distinguish clusters using distance
+                    relationships - so for the animals example, their proportions would be used to cluster them.
+                </p>
+                
+                <p>
+                    This kind of network is given samples to cluster, rather than a single input as used
+                    in classification. The nodes intially respond randomly, but higher output nodes eventually
+                    respond more strongly to their samples, and so become specialised to that type of input, thus
+                    allowing the sample data to be clustered.
+                </p>
+                
+                <h3>Pattern Association</h3>
+                
+                <p>
+                    This is used to generate a certain output from a given input; for example, a network can try and generate
+                    an uncorrupted output from a corrupted input, or more simply just convert between types, such as an image
+                    to a name. 
+                </p>
+                
+                <h3>Forecasting</h3>
+                
+                <p>
+                
+                </p>
+                
+                <h3>Optimisation</h3>
+                
+                <p>
+                
+                </p>
+                
+                <h3>Searching</h3>
+                
+                <p>
+                
+                </p>
                 
                 <h1>References</h1>
                 
@@ -172,6 +209,10 @@ Unsupervised learning is a more complex model of learning when compared to the s
                     <li>
                         Michael Chester (1993). <em>Neural Networks : A Tutorial.</em> Englewood Cliffs: London : PTR Prentice Hall. p1-50.
                     </li>		       			  
+                    
+                    <li>
+                        
+                    
                 </ol>
                 
                 </div>
