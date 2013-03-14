@@ -244,9 +244,10 @@ $(function() {
                 
                 <p>
                     A better approach is to add the momentum term to the weight update equation. The momentum term is simply the
-                    previous weight adjustment (intially zero) multipied by the momentum constant. This influences the weights in
-                    the direction previously travelled which prevents the network oscillating and speeds up the initial learning
-                    stage where the weights are adjusted in the same direction over many iterations.
+                    previous weight adjustment <em>d<sub>w</sub>(t)</em> (intially zero) multipied by the momentum constant
+                    <em>M</em>. This influences the weights in the direction previously travelled which prevents the network
+                    oscillating and speeds up the initial learning stage where the weights are adjusted in the same direction over
+                    many iterations.
                 </p>
                 
                 <div id="img">
@@ -309,24 +310,24 @@ $(function() {
                     The weight update performed in section 2 of the pseudo code shows the derivative of the activation function
                     taking the output of the current hidden neuron as its input instead of the input of the hidden neuron as stated
                     in weight adjustment section above. This is because the derivative of the logistics function can be defined only
-                    in terms of the output of the function:
+                    in terms of the function itself:
                 </p>
                 
                 <div id="img">
                     
-                    Logistics(x) = 1 / (1 + exp(-x))
+                    <em>logistics(x) = 1 / (1 + exp(-x))</em>
                     
                 </div>
                 
                 <div id="img">
                     
-                    dLogistics(x)/dx = Logistics(x) * (1 - Logistics(x))
+                    <em>dlogistics(x)/dx = logistics(x) * (1 - logistics(x))</em>
                     
                 </div>
                 
                 <p>
-                    This saves space by removing the need to store the input of each neuron when calculating the outputs of the
-                    network.
+                    This is a useful property as it saves space by removing the need to store the input of each neuron when
+                    calculating the outputs of the network from a training example.
                 </p>
 
                 <h1>Intuition</h1>
@@ -340,23 +341,35 @@ $(function() {
                 
                 <div id="img">
                 
-                    deltaW = learning rate * error * gradient of activation fuction at input * output
+                    <em>d<sub>W<sub>i,j</sub></sub> = LR * I<sub>i</sub> * E<sub>j</sub></em>
                 
                 </div>
 
                 <p>
-                    Where ??? is the weight between hidden neuron ??? and output ???, ??? is the error at ??? and ??? is the output
-                    of ???.
+                    Where <em>d<sub>W<sub>i,j</sub></sub></em> is change in weight between hidden neuron <em>i</em> and output
+                    neuron <em>j</em>, <em>LR</em> is the learning rate, <em>I<sub>i</sub></em> is the output of neuron <em>i</em>
+                    and <em>E<sub>j</sub></em> is the error of output neuron <em>j</em>.
                 </p>
                 
                 <p>
                     This will train a single layer network but cannot be applied to multilayer networks because the error value
                     of each neuron is unknown. However, running the network in reverse with the error values as described above,
                     gives a value for the amount which the neuron contributed to the errors in the next layer. This delta value
-                    can then be used as the error value in the delta rule, giving the weight update equation.
+                    can then be used as the error value in the delta rule, giving the weight update equation. The final factor,
+                    the derivative of the activation function is included to ensure that the weight is adjusted in the direction
+                    which will reduce the error.
                 </p>
 
                 <h1>Limitations</h1>
+                
+                <p>
+                    Back propagation is not guaranteed to find the best possible set of weights for the problem it is applied to.
+                    The algorithm will settle in a local error minimum if encountered instead of the global error minimum, this means
+                    that back propagation will not adjust the weights in a way such that the error will temporary increase before
+                    decreasing past the previous minimum. This can countered by introducing the momentum term in the weight update
+                    calculation, but the momentum term is not guaranteed to give the network enough inertia to move past the local
+                    minimums.
+                </p>
 
                 <p>
                     There are some problems associated with the back propagation algorithm. For instance, it might not find a solution
@@ -389,10 +402,6 @@ $(function() {
                     </li>
                     
                     <li>
-                        Turing Omnibus reference.
-                    </li>
-                    
-                    <li>
                         <a href="http://itee.uq.edu.au/~cogs2010/cmc/chapters/BackProp/index2.html">
                           http://itee.uq.edu.au/~cogs2010/cmc/chapters/BackProp/index2.html</a>
                     </li>
@@ -405,6 +414,10 @@ $(function() {
                     <li>
                         <a href="http://msdn.microsoft.com/en-us/magazine/jj658979.aspx">
                           http://msdn.microsoft.com/en-us/magazine/jj658979.aspx</a>
+                    </li>
+                    
+                    <li>
+                        A. K. Dewdney (1993). <em>The New Turning Omibus.</em> New York: W. H. Freeman and Company. p241-248.
                     </li>
                 </ul>
                 
