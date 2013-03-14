@@ -367,20 +367,17 @@ $(function() {
                 
                 <p>
                     Back propagation is not guaranteed to find the best possible set of weights for the problem it is applied to.
-                    The algorithm will settle in a local error minimum if encountered instead of the global error minimum, this means
+                    The algorithm will settle in a local error minimum if encountered instead of the global error minimum. This means
                     that back propagation will not adjust the weights in a way such that the error will temporary increase before
                     decreasing past the previous minimum. This can countered by introducing the momentum term in the weight update
-                    calculation, but the momentum term is not guaranteed to give the network enough inertia to move past the local
-                    minimums.
+                    calculation, but the momentum term may not give the network enough inertia to move past the local minimums.
                 </p>
 
                 <p>
-                    There are some problems associated with the back propagation algorithm. For instance, it might not find a solution
-                    - there is not guarantee that the network will reach its target. The network is also very sensitive to the number
-                    of hidden layers. If there are too little, it might not be able to learn what you want it to, but if there are too
-                    many then it will learn very slowly. This means that a neural network has to be reconfigured for each function you
-                    want it to do, unless they are similar. This takes a lot of time, and requires some experience to get right without
-                    resorting to trial and error.
+                    Besides this, back propagation is slow due to the large amount of iterations and calculations per iteration
+                    which have to be performed. The speed can be improved by running an iteration for each processor in the machine
+                    then adjusting each weight in the network by the sum of the weight adjustments given by each thread. Even with
+                    this multithreaded approach, training very large networks for complex problems is time consuming.
                 </p>
                 
                 <p>
